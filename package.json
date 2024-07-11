@@ -1,6 +1,6 @@
 {
   "name": "tsx-element-table",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "基于Vue3+Element+Tsx二次开发的ElTable组件",
   "main": "index.ts",
   "scripts": {
