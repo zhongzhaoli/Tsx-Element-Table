@@ -24,13 +24,3 @@
   border-bottom: none !important;
   color: #6c6c6c;
 }
-
-/* 临时 - 美观 */
-.TsxElementTableContainer {
-  max-width: 1000px;
-  border: 1px #eaeaea solid;
-  border-radius: 4px;
-  padding: 20px;
-  margin: 0 auto;
-  margin-top: 100px;
-}
