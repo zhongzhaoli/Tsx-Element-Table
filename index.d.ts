@@ -1,14 +1,9 @@
-export interface TsxElementTable {
-  TableColumnProps: import('./src/type').TableColumnProps;
-  TableProps: import('./src/type').TableProps;
-  HandleColumnProps: import('./src/type').HandleColumnProps;
-  TableDataProps: import('./src/type').TableDataProps;
-  ComponentSize: import('./src/type').ComponentSize;
-  ButtonType: import('./src/type').ButtonType;
-  ColumnSlotCallback: import('./src/type').ColumnSlotCallback;
-  HandleProps: import('./src/type').HandleProps;
-  ComponentProps: import('./src/type').ComponentProps;
-}
-
-declare const TsxElementTable: TsxElementTable;
-export default TsxElementTable;
+export { TableColumnProps } from './src/type';
+export { TableProps } from './src/type';
+export { HandleColumnProps } from './src/type';
+export { TableDataProps } from './src/type';
+export { ComponentSize } from './src/type';
+export { ButtonType } from './src/type';
+export { ColumnSlotCallback } from './src/type';
+export { HandleProps } from './src/type';
+export { ComponentProps } from './src/type';
