@@ -1,0 +1,26 @@
+{
+  "name": "tsx-element-table",
+  "version": "1.0.0",
+  "description": "基于Vue3+Element+Tsx二次开发的ElTable组件",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhongzhaoli/Tsx-Element-Table.git"
+  },
+  "keywords": [
+    "Tsx",
+    "Element",
+    "Table",
+    "Vue3"
+  ],
+  "author": "Custer",
+  "license": "MIT",
+  "types": "./index.d.ts",
+  "bugs": {
+    "url": "https://github.com/zhongzhaoli/Tsx-Element-Table/issues"
+  },
+  "homepage": "https://github.com/zhongzhaoli/Tsx-Element-Table#readme"
+}
