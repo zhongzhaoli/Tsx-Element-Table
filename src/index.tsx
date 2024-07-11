@@ -6,7 +6,7 @@ import {
   type ComponentSize,
   type TableProps,
   type HandleColumnProps,
-} from './type.ts';
+} from './types.ts';
 import {
   DEFAULT_PAGE,
   DEFAULT_PAGE_LAYOUT,
@@ -96,8 +96,8 @@ const TsxElementTable = defineComponent({
     }
     // 生成分页器
     function renderPagination() {
-      const _currentPage = ref(props['v-model:currentPage'] || DEFAULT_PAGE);
-      const _pageSize = ref(props['v-model:pageSize'] || DEFAULT_PAGE_SIZE);
+      const _currentPage = props['v-model:currentPage'] || DEFAULT_PAGE;
+      const _pageSize = props['v-model:pageSize'] || DEFAULT_PAGE_SIZE;
       const onPageChange = (pageNum: number) => {
         emit('update:currentPage', pageNum);
       };
@@ -107,8 +107,8 @@ const TsxElementTable = defineComponent({
       return (
         <el-pagination
           size={unref(_size)}
-          v-model:current-page={_currentPage}
-          v-model:page-size={_pageSize}
+          defaultCurrentPage={_currentPage}
+          pageSize={_pageSize}
           total={props.total}
           layout={DEFAULT_PAGE_LAYOUT}
           onCurrentChange={onPageChange}

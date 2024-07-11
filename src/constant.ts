@@ -1,4 +1,4 @@
-import { ComponentSize } from '.';
+import { ComponentSize } from './types.ts';
 
 // 表格插槽前缀
 export const DEFAULT_COLUMN_SLOT_PREFIX: string = 'table-';
