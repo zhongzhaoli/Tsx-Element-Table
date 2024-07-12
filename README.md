@@ -1,5 +1,7 @@
 ## Tsx-Element-Table
 
+基于 `Vue3` 和 `Element ui` 二次封装的`Table`组件。
+
 ---
 
 ### 展示
