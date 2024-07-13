@@ -123,30 +123,32 @@ import TsxElementTable from 'tsx-element-table';
 
 #### TsxElementTable 方法
 
-| 方法名           | 说明             | 类型                          |
-| :--------------- | :--------------- | ----------------------------- |
-| size-change      | 组件大小发生变化 | () => void                    |
-| table-refresh    | 表格数据刷新     | () => void                    |
-| handle-click     | 左侧操作按钮点击 | (key: string) => void         |
-| selection-change | 选择项发生改变时 | (newSelection: any[]) => void |
+| 方法名           | 说明             | 类型                                                                                                   |
+| :--------------- | :--------------- | ------------------------------------------------------------------------------------------------------ |
+| size-change      | 组件大小发生变化 | () => void                                                                                             |
+| table-refresh    | 表格数据刷新     | () => void                                                                                             |
+| handle-click     | 左侧操作按钮点击 | (key: string) => void                                                                                  |
+| selection-change | 选择项发生改变时 | (newSelection: any[]) => void                                                                          |
+| ...              | 其他             | [同 Element table Event](https://element-plus.org/zh-CN/component/table.html#table-%E4%BA%8B%E4%BB%B6) |
 
 #### TsxElementTable 类型
 
-| 类型名称           | 说明                      |
-| :----------------- | :------------------------ |
-| TableColumnProps   | 表格列 JSON 类型          |
-| TableProps         | table 类型                |
-| HandleColumnProps  | 字段管理类型 (无实际用处) |
-| TableDataProps     | table 数据类型            |
-| ComponentSize      | 组件大小类型              |
-| ButtonType         | 按钮类型                  |
-| ColumnSlotCallback | 自定义表格列数据回调类型  |
-| HandleProps        | 左侧操作按钮 JSON 类型    |
-| ComponentProps     | 整个组件的 Props          |
+| 类型名称           | 说明                                                                                                              |
+| :----------------- | :---------------------------------------------------------------------------------------------------------------- |
+| TableColumnProps   | 表格列 JSON 类型                                                                                                  |
+| TableProps         | table 类型                                                                                                        |
+| HandleColumnProps  | 字段管理类型 (无实际用处)                                                                                         |
+| TableDataProps     | table 数据类型                                                                                                    |
+| ComponentSize      | 组件大小类型                                                                                                      |
+| ButtonType         | 按钮类型                                                                                                          |
+| ColumnSlotCallback | 自定义表格列数据回调类型                                                                                          |
+| HandleProps        | 左侧操作按钮 JSON 类型                                                                                            |
+| ComponentProps     | 整个组件的 Props                                                                                                  |
+| ComponentInstance  | 整个组件的 Expose (包括[Element Table Expose](https://element-plus.org/zh-CN/component/table.html#table-exposes)) |
 
 ### 后续开发任务
 
-- [ ] `Table Column` 颗粒度与 `Element` 对其（属性、方法、暴露）。
+- [x] `Table Column` 颗粒度与 `Element` 对其（属性、方法、暴露）。
 - [ ] `Pagination` 增加可配置一定条件下显示与隐藏。
 - [ ] `Handle` 右侧可在一定限度内配置新的按钮。
 

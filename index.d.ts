@@ -7,3 +7,4 @@ export { ButtonType } from './src/types';
 export { ColumnSlotCallback } from './src/types';
 export { HandleProps } from './src/types';
 export { ComponentProps } from './src/types';
+export { ComponentInstance } from './src/types';
