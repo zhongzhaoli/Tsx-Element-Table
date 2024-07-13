@@ -23,7 +23,12 @@ import TsxElementTable from 'tsx-element-table';
 ```
 
 ```javascript
-// 类型引入
+// 样式
+import 'tsx-element-table/dist/index.css';
+```
+
+```javascript
+// 类型引入 - 举例
 import { type ComponentProps } from 'tsx-element-table';
 ```
 
