@@ -148,9 +148,9 @@ import TsxElementTable from 'tsx-element-table';
 
 ### 后续开发任务
 
-- [x] `Table Column` 颗粒度与 `Element` 对其（属性、方法、暴露）。
-- [ ] `Pagination` 增加可配置一定条件下显示与隐藏。
-- [ ] `Handle` 右侧可在一定限度内配置新的按钮。
+- ~~`Table Column` 颗粒度与 `Element` 对其（属性、方法、暴露）。~~
+- `Pagination` 增加可配置一定条件下显示与隐藏。
+- `Handle` 右侧可在一定限度内配置新的按钮。
 
 ### 反馈与提问
 
