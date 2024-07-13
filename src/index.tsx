@@ -1,4 +1,4 @@
-import { defineComponent, PropType, ref, unref } from 'vue';
+import { defineComponent, PropType, ref, unref, getCurrentInstance } from 'vue';
 import {
   type ColumnSlotCallback,
   type HandleProps,
@@ -6,7 +6,7 @@ import {
   type ComponentSize,
   type TableProps,
   type HandleColumnProps,
-} from './types.ts';
+} from './types';
 import {
   DEFAULT_PAGE,
   DEFAULT_PAGE_LAYOUT,
@@ -16,7 +16,7 @@ import {
   COMPONENT_SIZE_LIST,
   DEFAULT_HANDLE_SLOT_KEY,
   SPECIAL_COLUMN,
-} from './constant.ts';
+} from './constant';
 import './index.css';
 import { Refresh, Operation, Open } from '@element-plus/icons-vue';
 
@@ -50,17 +50,9 @@ const TsxElementTable = defineComponent({
       default: DEFAULT_PAGE,
     },
   },
-  emits: [
-    'update:currentPage',
-    'update:pageSize',
-    'size-change',
-    'table-refresh',
-    'handle-click',
-    'selection-change',
-  ],
-  setup(props: ComponentProps, { slots, emit }) {
+  setup(props: ComponentProps, { slots, emit, expose }) {
     const _size = ref(props.size);
-    const tableRef = ref();
+    const tableRef = ref(null);
     const _columns = ref<HandleColumnProps[]>(
       (props.table.columns || []).map((column) => {
         return {
@@ -70,6 +62,10 @@ const TsxElementTable = defineComponent({
       })
     );
     const drawerVisible = ref(false);
+    // 公开的方法或属性
+    expose({
+      getTableRef: () => tableRef.value,
+    });
     // 根据column的prop属性，获取对应的插槽内容
     function getColumnSlot(column: HandleColumnProps) {
       const slotName = `${DEFAULT_COLUMN_SLOT_PREFIX}${column.prop}`;
@@ -87,7 +83,6 @@ const TsxElementTable = defineComponent({
       const slot = getColumnSlot(column);
       if (slot)
         columnSlots.default = (scope: Record<string, any>) => slot(scope);
-
       return (
         column.show && (
           <el-table-column {...column}>{columnSlots}</el-table-column>
@@ -119,20 +114,27 @@ const TsxElementTable = defineComponent({
     // 生成Table
     function renderTable() {
       const { table } = props;
-      const tableElement = (
-        <el-table
-          ref="tableRef"
-          size={unref(_size)}
-          {...table}
-          onSelectionChange={emit('selection-change')}
-        >
+      const instance = getCurrentInstance();
+      const events: any = {};
+      const eventKeys = Object.keys(instance?.vnode?.props ?? []).filter(
+        (v) => v.startsWith('on') && !v.startsWith('onUpdate')
+      );
+      eventKeys.forEach((key) => {
+        const newKey = key.replace('on', '');
+        const emitKey = newKey
+          .replace(/([a-z])([A-Z])/g, '$1-$2')
+          .toLowerCase();
+        events[key] = (...args: any[]) => {
+          emit(emitKey, ...args);
+        };
+      });
+      return (
+        <el-table ref={tableRef} size={unref(_size)} {...events} {...table}>
           {unref(_columns).map((column: HandleColumnProps) => {
             return renderTableColumn(column);
           })}
         </el-table>
       );
-      tableRef.value = tableElement;
-      return tableElement;
     }
     // 生成Handle
     function renderHandle() {

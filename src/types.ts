@@ -1,4 +1,8 @@
-import { type ElTableColumn, ElTable } from 'element-plus/lib/components/table';
+import {
+  type ElTableColumn,
+  ElTable,
+  TableInstance,
+} from 'element-plus/lib/components/table';
 import { type ElButton } from 'element-plus/lib/components/button';
 
 type ElTableProps = InstanceType<typeof ElTable>['$props'];
@@ -34,4 +38,8 @@ export interface ComponentProps {
   total?: number;
   'v-model:pageSize'?: number;
   'v-model:currentPage'?: number;
+}
+
+export interface ComponentInstance {
+  getTableRef: () => TableInstance;
 }
