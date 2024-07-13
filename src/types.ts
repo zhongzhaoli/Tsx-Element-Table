@@ -9,35 +9,49 @@ type ElTableProps = InstanceType<typeof ElTable>['$props'];
 type ElTableColumnProps = InstanceType<typeof ElTableColumn>['$props'];
 type ElButtonProps = InstanceType<typeof ElButton>['$props'];
 
-export interface TableColumnProps extends ElTableColumnProps {}
-export interface TableProps extends ElTableProps {
-  columns: TableColumnProps[];
-}
-export interface HandleColumnProps extends TableColumnProps {
-  show: boolean;
-}
+// 基础
 export type TableDataProps = { [key: string]: any };
 export type ComponentSize = 'large' | 'default' | 'small';
+export type PaginationShow = boolean | 'auto';
 export type ButtonType = ElButtonProps['type'];
 export type ColumnSlotCallback = (scope: Record<string, any>) => any;
 
-export interface HandleProps {
+// 附加
+export interface TableColumnProps extends ElTableColumnProps {}
+export interface HandleDisplayProps extends TableColumnProps {
+  show: boolean;
+}
+export interface HandleColumnProps {
   key: string;
   label: string;
   type?: ButtonType;
   action?: () => void;
 }
+
+// 三件套
+export interface TableProps extends ElTableProps {
+  columns: TableColumnProps[];
+}
+export interface HandleProps {
+  columns?: HandleColumnProps[];
+  show?: boolean;
+}
+export interface PaginationProps {
+  total?: number;
+  show?: PaginationShow;
+}
+
 export interface ComponentProps {
   // Normal
-  size?: 'large' | 'default' | 'small';
+  size?: ComponentSize;
   // Handle
-  handleList?: HandleProps[];
+  handle?: HandleProps;
   // Table
   table: TableProps;
   // Pagination
-  total?: number;
-  'v-model:pageSize'?: number;
-  'v-model:currentPage'?: number;
+  pagination?: PaginationProps;
+  pageSize?: number;
+  currentPage?: number;
 }
 
 export interface ComponentInstance {

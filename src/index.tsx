@@ -5,7 +5,8 @@ import {
   type ComponentProps,
   type ComponentSize,
   type TableProps,
-  type HandleColumnProps,
+  type HandleDisplayProps,
+  PaginationProps,
 } from './types';
 import {
   DEFAULT_PAGE,
@@ -16,9 +17,13 @@ import {
   COMPONENT_SIZE_LIST,
   DEFAULT_HANDLE_SLOT_KEY,
   SPECIAL_COLUMN,
+  DEFAULT_HANDLE_SHOW,
+  DEFAULT_PAGE_SHOW,
+  DEFAULT_PAGE_TOTAL,
 } from './constant';
 import './index.css';
 import { Refresh, Operation, Open } from '@element-plus/icons-vue';
+import { type TableInstance } from 'element-plus/lib/components/table';
 
 const TsxElementTable = defineComponent({
   name: 'TsxElementTable',
@@ -32,28 +37,27 @@ const TsxElementTable = defineComponent({
       type: Object as PropType<TableProps>,
       required: true,
     },
-    handleList: {
-      type: Array as PropType<HandleProps[]>,
-      default: () => [],
+    handle: {
+      type: Object as PropType<HandleProps>,
+      default: () => {},
     },
-    // Pagination
-    total: {
-      type: Number,
-      default: 0,
+    pagination: {
+      type: Object as PropType<PaginationProps>,
+      default: () => {},
     },
-    'v-model:pageSize': {
-      type: Number,
-      default: DEFAULT_PAGE_SIZE,
-    },
-    'v-model:currentPage': {
+    currentPage: {
       type: Number,
       default: DEFAULT_PAGE,
     },
+    pageSize: {
+      type: Number,
+      default: DEFAULT_PAGE_SIZE,
+    },
   },
   setup(props: ComponentProps, { slots, emit, expose }) {
-    const _size = ref(props.size);
-    const tableRef = ref(null);
-    const _columns = ref<HandleColumnProps[]>(
+    const componentSize = ref(props.size);
+    const tableRef = ref<TableInstance | null>(null);
+    const columns = ref<HandleDisplayProps[]>(
       (props.table.columns || []).map((column) => {
         return {
           ...column,
@@ -67,7 +71,7 @@ const TsxElementTable = defineComponent({
       getTableRef: () => tableRef.value,
     });
     // 根据column的prop属性，获取对应的插槽内容
-    function getColumnSlot(column: HandleColumnProps) {
+    function getColumnSlot(column: HandleDisplayProps) {
       const slotName = `${DEFAULT_COLUMN_SLOT_PREFIX}${column.prop}`;
       return slots[slotName];
     }
@@ -76,7 +80,7 @@ const TsxElementTable = defineComponent({
       return slots[DEFAULT_HANDLE_SLOT_KEY];
     }
     // 根据ElTableColumn的默认插槽default，放入我们自定义的插槽内容
-    function renderTableColumn(column: HandleColumnProps) {
+    function renderTableColumn(column: HandleDisplayProps) {
       const columnSlots: {
         default?: ColumnSlotCallback;
       } = {};
@@ -91,8 +95,14 @@ const TsxElementTable = defineComponent({
     }
     // 生成分页器
     function renderPagination() {
-      const _currentPage = props['v-model:currentPage'] || DEFAULT_PAGE;
-      const _pageSize = props['v-model:pageSize'] || DEFAULT_PAGE_SIZE;
+      const currentPage = props.currentPage || DEFAULT_PAGE;
+      const pageSize = props.pageSize || DEFAULT_PAGE_SIZE;
+      const _paginationShow = props.pagination?.show ?? DEFAULT_PAGE_SHOW;
+      const paginationShow =
+        _paginationShow === 'auto'
+          ? (props.pagination.total || DEFAULT_PAGE_TOTAL) > pageSize
+          : _paginationShow;
+      if (!paginationShow) return;
       const onPageChange = (pageNum: number) => {
         emit('update:currentPage', pageNum);
       };
@@ -100,15 +110,17 @@ const TsxElementTable = defineComponent({
         emit('update:pageSize', pageSize);
       };
       return (
-        <el-pagination
-          size={unref(_size)}
-          defaultCurrentPage={_currentPage}
-          pageSize={_pageSize}
-          total={props.total}
-          layout={DEFAULT_PAGE_LAYOUT}
-          onCurrentChange={onPageChange}
-          onSizeChange={onSizeChange}
-        />
+        <div className="tetPaginationBox">
+          <el-pagination
+            size={unref(componentSize)}
+            defaultCurrentPage={currentPage}
+            pageSize={pageSize}
+            total={props.pagination.total || DEFAULT_PAGE_TOTAL}
+            layout={DEFAULT_PAGE_LAYOUT}
+            onCurrentChange={onPageChange}
+            onSizeChange={onSizeChange}
+          />
+        </div>
       );
     }
     // 生成Table
@@ -129,16 +141,27 @@ const TsxElementTable = defineComponent({
         };
       });
       return (
-        <el-table ref={tableRef} size={unref(_size)} {...events} {...table}>
-          {unref(_columns).map((column: HandleColumnProps) => {
-            return renderTableColumn(column);
-          })}
-        </el-table>
+        <div className="tetTableBox">
+          <el-table
+            ref={tableRef}
+            size={unref(componentSize)}
+            {...events}
+            {...table}
+          >
+            {unref(columns).map((column: HandleDisplayProps) => {
+              return renderTableColumn(column);
+            })}
+          </el-table>
+        </div>
       );
     }
     // 生成Handle
     function renderHandle() {
+      const handleShow = props.handle?.show ?? DEFAULT_HANDLE_SHOW;
+      if (!handleShow) return;
       // 左侧可配置options，或者slot
+      const handleSize =
+        unref(componentSize) === 'large' ? 'default' : unref(componentSize);
       function renderLeft() {
         // 通用左侧按钮点击
         const handleClick = (key: string) => {
@@ -147,10 +170,11 @@ const TsxElementTable = defineComponent({
         const slot = getHandleSlot();
         return (
           <>
-            <div className="cuHandleLeftBtnBox">
-              {(props.handleList || []).map((item) => {
+            <div className="tetHandleLeftBtnBox">
+              {(props.handle?.columns || []).map((item) => {
                 return (
                   <el-button
+                    size={handleSize}
                     key={item.key}
                     type={item.type || ''}
                     onClick={item.action ?? (() => handleClick(item.key))}
@@ -160,19 +184,21 @@ const TsxElementTable = defineComponent({
                 );
               })}
             </div>
-            <div className="cuHandleLeftSlotBox">{slot && slot()}</div>
+            <div className="tetHandleLeftSlotBox">{slot && slot()}</div>
           </>
         );
       }
       function renderRight() {
         const dropdownSlot = {
-          default: () => <el-button circle icon={Operation}></el-button>,
+          default: () => (
+            <el-button circle size={handleSize} icon={Operation}></el-button>
+          ),
           dropdown: () => (
             <el-dropdown-menu>
               {COMPONENT_SIZE_LIST.map((item) => (
                 <el-dropdown-item
                   command={item.value}
-                  disabled={unref(_size) === item.value}
+                  disabled={handleSize === item.value}
                 >
                   {item.label}
                 </el-dropdown-item>
@@ -181,7 +207,7 @@ const TsxElementTable = defineComponent({
           ),
         };
         const sizeChange = (size: ComponentSize) => {
-          _size.value = size;
+          componentSize.value = size;
           emit('size-change', size);
         };
         const tableRefresh = () => {
@@ -195,6 +221,7 @@ const TsxElementTable = defineComponent({
             <div>
               <el-button
                 circle
+                size={handleSize}
                 icon={Refresh}
                 onClick={tableRefresh}
               ></el-button>
@@ -205,72 +232,67 @@ const TsxElementTable = defineComponent({
               </el-dropdown>
             </div>
             <div>
-              <el-button circle icon={Open} onClick={openDrawer}></el-button>
+              <el-button
+                circle
+                size={handleSize}
+                icon={Open}
+                onClick={openDrawer}
+              ></el-button>
             </div>
           </>
         );
       }
-      return (
-        <>
-          <div className="cuHandleLeftBox">{renderLeft()}</div>
-          <div className="cuHandleRightBox">{renderRight()}</div>
-        </>
-      );
-    }
-    // 生成Drawer 字段管理
-    function renderDrawer() {
-      const close = () => {
-        drawerVisible.value = false;
-      };
-      const normalCheckBox = (column: HandleColumnProps) => {
+      function renderDrawer() {
+        const close = () => {
+          drawerVisible.value = false;
+        };
+        const normalCheckBox = (column: HandleDisplayProps) => {
+          return (
+            <el-checkbox key="normal" v-model={column.show} label={column.prop}>
+              {column.label}
+            </el-checkbox>
+          );
+        };
+        const specialCheckBox = (column: HandleDisplayProps) => {
+          return (
+            <el-checkbox key={column.type} disabled={true} model-value={true}>
+              {SPECIAL_COLUMN[column.type as string]}
+            </el-checkbox>
+          );
+        };
+        const drawerSlot = {
+          default: () =>
+            unref(columns).map((column: HandleDisplayProps) => {
+              return column.type && SPECIAL_COLUMN[column.type]
+                ? specialCheckBox(column)
+                : normalCheckBox(column);
+            }),
+        };
         return (
-          <el-checkbox key="normal" v-model={column.show} label={column.prop}>
-            {column.label}
-          </el-checkbox>
+          <el-drawer
+            width="320px"
+            append-to-body
+            model-value={drawerVisible.value}
+            title="字段管理"
+            onClose={close}
+          >
+            {drawerSlot}
+          </el-drawer>
         );
-      };
-      const specialCheckBox = (column: HandleColumnProps) => {
-        return (
-          <el-checkbox key={column.type} disabled={true} model-value={true}>
-            {SPECIAL_COLUMN[column.type as string]}
-          </el-checkbox>
-        );
-      };
-      const drawerSlot = {
-        default: () =>
-          unref(_columns).map((column: HandleColumnProps) => {
-            return column.type && SPECIAL_COLUMN[column.type]
-              ? specialCheckBox(column)
-              : normalCheckBox(column);
-          }),
-      };
+      }
       return (
-        <el-drawer
-          width="320px"
-          append-to-body
-          model-value={drawerVisible.value}
-          title="字段管理"
-          onClose={close}
-        >
-          {drawerSlot}
-        </el-drawer>
+        <div className="tetHandleBox">
+          <div className="tetHandleLeftBox">{renderLeft()}</div>
+          <div className="tetHandleRightBox">{renderRight()}</div>
+          {renderDrawer()}
+        </div>
       );
     }
     return () => (
       <div className="TsxElementTableContainer">
-        <div className="cuHandleBox">
-          {/* Handle */}
-          {renderHandle()}
-          {renderDrawer()}
-        </div>
-        <div className="cuTableBox">
-          {/* Table */}
-          {renderTable()}
-        </div>
-        <div className="cuPaginationBox">
-          {/* Pagination */}
-          {renderPagination()}
-        </div>
+        {renderHandle()}
+        {renderTable()}
+        {renderPagination()}
       </div>
     );
   },

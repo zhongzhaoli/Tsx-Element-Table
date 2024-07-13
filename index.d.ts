@@ -1,10 +1,1 @@
-export { TableColumnProps } from './src/types';
-export { TableProps } from './src/types';
-export { HandleColumnProps } from './src/types';
-export { TableDataProps } from './src/types';
-export { ComponentSize } from './src/types';
-export { ButtonType } from './src/types';
-export { ColumnSlotCallback } from './src/types';
-export { HandleProps } from './src/types';
-export { ComponentProps } from './src/types';
-export { ComponentInstance } from './src/types';
+export * from './src/types';
