@@ -95,13 +95,12 @@ const TsxElementTable = defineComponent({
     }
     // 生成分页器
     function renderPagination() {
-      const currentPage = props.currentPage || DEFAULT_PAGE;
-      const pageSize = props.pageSize || DEFAULT_PAGE_SIZE;
+      const currentPage = props?.currentPage || DEFAULT_PAGE;
+      const pageSize = props?.pageSize || DEFAULT_PAGE_SIZE;
+      const total = props?.pagination?.total || DEFAULT_PAGE_TOTAL;
       const _paginationShow = props.pagination?.show ?? DEFAULT_PAGE_SHOW;
       const paginationShow =
-        _paginationShow === 'auto'
-          ? (props.pagination.total || DEFAULT_PAGE_TOTAL) > pageSize
-          : _paginationShow;
+        _paginationShow === 'auto' ? total > pageSize : _paginationShow;
       if (!paginationShow) return;
       const onPageChange = (pageNum: number) => {
         emit('update:currentPage', pageNum);
@@ -115,7 +114,7 @@ const TsxElementTable = defineComponent({
             size={unref(componentSize)}
             defaultCurrentPage={currentPage}
             pageSize={pageSize}
-            total={props.pagination.total || DEFAULT_PAGE_TOTAL}
+            total={total}
             layout={DEFAULT_PAGE_LAYOUT}
             onCurrentChange={onPageChange}
             onSizeChange={onSizeChange}
@@ -157,6 +156,7 @@ const TsxElementTable = defineComponent({
     }
     // 生成Handle
     function renderHandle() {
+      if (!props.handle) return;
       const handleShow = props.handle?.show ?? DEFAULT_HANDLE_SHOW;
       if (!handleShow) return;
       // 左侧可配置options，或者slot
