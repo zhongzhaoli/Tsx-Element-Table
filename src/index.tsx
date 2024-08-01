@@ -104,9 +104,11 @@ const TsxElementTable = defineComponent({
       if (!paginationShow) return;
       const onPageChange = (pageNum: number) => {
         emit('update:currentPage', pageNum);
+        emit('page-change', { currentPage: pageNum, pageSize });
       };
       const onSizeChange = (pageSize: number) => {
         emit('update:pageSize', pageSize);
+        emit('page-change', { currentPage, pageSize });
       };
       return (
         <div className="tetPaginationBox">

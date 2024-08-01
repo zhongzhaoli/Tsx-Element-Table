@@ -180,12 +180,13 @@ import { type ComponentProps } from 'tsx-element-table';
 
 ### TsxElementTable 方法
 
-| 方法名        | 说明             | 类型                                                                                                   |
-| :------------ | :--------------- | ------------------------------------------------------------------------------------------------------ |
-| size-change   | 组件大小发生变化 | () => void                                                                                             |
-| table-refresh | 表格数据刷新     | () => void                                                                                             |
-| handle-click  | 左侧操作按钮点击 | (key: string) => void                                                                                  |
-| ...           | 其他             | [同 Element Table Event](https://element-plus.org/zh-CN/component/table.html#table-%E4%BA%8B%E4%BB%B6) |
+| 方法名        | 说明               | 类型                                                                                                   |
+| :------------ | :----------------- | ------------------------------------------------------------------------------------------------------ |
+| size-change   | 组件大小发生变化   | () => void                                                                                             |
+| table-refresh | 表格数据刷新       | () => void                                                                                             |
+| handle-click  | 左侧操作按钮点击   | (key: string) => void                                                                                  |
+| page-change   | 页数和页码发生变化 | {currentPage: number, pageSize: number}                                                                |
+| ...           | 其他               | [同 Element Table Event](https://element-plus.org/zh-CN/component/table.html#table-%E4%BA%8B%E4%BB%B6) |
 
 ### TsxElementTable 暴露
 
