@@ -31,6 +31,9 @@
     "@element-plus/icons-vue": "^2.3.1",
     "element-plus": "^2.7.6"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",
     "@vitejs/plugin-vue-jsx": "^4.0.0"
