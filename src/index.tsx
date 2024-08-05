@@ -1,4 +1,11 @@
-import { defineComponent, PropType, ref, unref, getCurrentInstance } from 'vue';
+import {
+  defineComponent,
+  PropType,
+  ref,
+  unref,
+  getCurrentInstance,
+  watch,
+} from 'vue';
 import {
   type ColumnSlotCallback,
   type HandleProps,
@@ -57,13 +64,18 @@ const TsxElementTable = defineComponent({
   setup(props: ComponentProps, { slots, emit, expose }) {
     const componentSize = ref(props.size);
     const tableRef = ref<TableInstance | null>(null);
-    const columns = ref<HandleDisplayProps[]>(
-      (props.table.columns || []).map((column) => {
-        return {
-          ...column,
-          show: true,
-        };
-      })
+    const columns = ref<HandleDisplayProps[]>();
+    watch(
+      () => props.table,
+      (nV) => {
+        columns.value = nV.columns.map((column) => {
+          return {
+            ...column,
+            show: true,
+          };
+        });
+      },
+      { deep: true, immediate: true }
     );
     const drawerVisible = ref(false);
     // 公开的方法或属性
