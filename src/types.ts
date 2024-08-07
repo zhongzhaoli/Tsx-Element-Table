@@ -17,7 +17,9 @@ export type ButtonType = ElButtonProps['type'];
 export type ColumnSlotCallback = (scope: Record<string, any>) => any;
 
 // 附加
-export interface TableColumnProps extends ElTableColumnProps {}
+export interface TableColumnProps extends ElTableColumnProps {
+  show?: boolean;
+}
 export interface HandleDisplayProps extends TableColumnProps {
   show: boolean;
 }

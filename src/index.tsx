@@ -71,7 +71,7 @@ const TsxElementTable = defineComponent({
         columns.value = nV.columns.map((column) => {
           return {
             ...column,
-            show: true,
+            show: column.show ?? true,
           };
         });
       },

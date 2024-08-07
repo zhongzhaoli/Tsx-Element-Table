@@ -1,4 +1,4 @@
-import { defineComponent as S, openBlock as x, createElementBlock as T, createElementVNode as w, ref as b, watch as j, createVNode as e, resolveComponent as u, unref as h, getCurrentInstance as M, mergeProps as I, isVNode as R, Fragment as L } from "vue";
+import { defineComponent as S, openBlock as x, createElementBlock as T, createElementVNode as w, ref as m, watch as j, createVNode as e, resolveComponent as u, unref as h, getCurrentInstance as M, mergeProps as I, isVNode as R, Fragment as L } from "vue";
 const V = "table-", K = "handle-left", G = !0, A = {
   index: "索引",
   selection: "选择"
@@ -55,7 +55,7 @@ var X = /* @__PURE__ */ S({
     ]));
   }
 }), ne = te;
-function m(t) {
+function b(t) {
   return typeof t == "function" || Object.prototype.toString.call(t) === "[object Object]" && !R(t);
 }
 const le = /* @__PURE__ */ S({
@@ -94,46 +94,46 @@ const le = /* @__PURE__ */ S({
     emit: c,
     expose: N
   }) {
-    const v = b(t.size), z = b(null), C = b();
+    const v = m(t.size), z = m(null), C = m();
     j(() => t.table, (r) => {
-      C.value = r.columns.map((a) => ({
-        ...a,
-        show: !0
+      C.value = r.columns.map((n) => ({
+        ...n,
+        show: n.show ?? !0
       }));
     }, {
       deep: !0,
       immediate: !0
     });
-    const y = b(!1);
+    const y = m(!1);
     N({
       getTableRef: () => z.value
     });
     function O(r) {
-      const a = `${V}${r.prop}`;
-      return p[a];
+      const n = `${V}${r.prop}`;
+      return p[n];
     }
     function P() {
       return p[K];
     }
     function k(r) {
-      const a = {}, s = O(r);
-      return s && (a.default = (f) => s(f)), r.show && e(u("el-table-column"), r, m(a) ? a : {
-        default: () => [a]
+      const n = {}, s = O(r);
+      return s && (n.default = (f) => s(f)), r.show && e(u("el-table-column"), r, b(n) ? n : {
+        default: () => [n]
       });
     }
     function U() {
       var i, d;
-      const r = (t == null ? void 0 : t.currentPage) || B, a = (t == null ? void 0 : t.pageSize) || H, s = ((i = t == null ? void 0 : t.pagination) == null ? void 0 : i.total) || Z, f = ((d = t.pagination) == null ? void 0 : d.show) ?? $;
-      if (!(f === "auto" ? s > a : f)) return;
-      const _ = (n) => {
-        c("update:currentPage", n), c("page-change", {
-          currentPage: n,
-          pageSize: a
-        });
-      }, o = (n) => {
-        c("update:pageSize", n), c("page-change", {
-          currentPage: r,
+      const r = (t == null ? void 0 : t.currentPage) || B, n = (t == null ? void 0 : t.pageSize) || H, s = ((i = t == null ? void 0 : t.pagination) == null ? void 0 : i.total) || Z, f = ((d = t.pagination) == null ? void 0 : d.show) ?? $;
+      if (!(f === "auto" ? s > n : f)) return;
+      const _ = (a) => {
+        c("update:currentPage", a), c("page-change", {
+          currentPage: a,
           pageSize: n
+        });
+      }, o = (a) => {
+        c("update:pageSize", a), c("page-change", {
+          currentPage: r,
+          pageSize: a
         });
       };
       return e("div", {
@@ -141,7 +141,7 @@ const le = /* @__PURE__ */ S({
       }, [e(u("el-pagination"), {
         size: h(v),
         defaultCurrentPage: r,
-        pageSize: a,
+        pageSize: n,
         total: s,
         layout: Y,
         onCurrentChange: _,
@@ -152,40 +152,40 @@ const le = /* @__PURE__ */ S({
       var _;
       let r;
       const {
-        table: a
+        table: n
       } = t, s = M(), f = {};
       return Object.keys(((_ = s == null ? void 0 : s.vnode) == null ? void 0 : _.props) ?? []).filter((o) => o.startsWith("on") && !o.startsWith("onUpdate")).forEach((o) => {
         const d = o.replace("on", "").replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
-        f[o] = (...n) => {
-          c(d, ...n);
+        f[o] = (...a) => {
+          c(d, ...a);
         };
       }), e("div", {
         className: "tetTableBox"
       }, [e(u("el-table"), I({
         ref: z,
         size: h(v)
-      }, f, a), m(r = h(C).map((o) => k(o))) ? r : {
+      }, f, n), b(r = h(C).map((o) => k(o))) ? r : {
         default: () => [r]
       })]);
     }
     function F() {
       var _;
       if (!t.handle || !(((_ = t.handle) == null ? void 0 : _.show) ?? G)) return;
-      const a = h(v) === "large" ? "default" : h(v);
+      const n = h(v) === "large" ? "default" : h(v);
       function s() {
         var d;
-        const o = (n) => {
-          c("handle-click", n);
+        const o = (a) => {
+          c("handle-click", a);
         }, i = P();
         return e(L, null, [e("div", {
           className: "tetHandleLeftBtnBox"
-        }, [(((d = t.handle) == null ? void 0 : d.columns) || []).map((n) => e(u("el-button"), {
-          size: a,
-          key: n.key,
-          type: n.type || "",
-          onClick: n.action ?? (() => o(n.key))
+        }, [(((d = t.handle) == null ? void 0 : d.columns) || []).map((a) => e(u("el-button"), {
+          size: n,
+          key: a.key,
+          type: a.type || "",
+          onClick: a.action ?? (() => o(a.key))
         }, {
-          default: () => [n.label]
+          default: () => [a.label]
         }))]), e("div", {
           className: "tetHandleLeftSlotBox"
         }, [i && i()])]);
@@ -194,14 +194,14 @@ const le = /* @__PURE__ */ S({
         const o = {
           default: () => e(u("el-button"), {
             circle: !0,
-            size: a,
+            size: n,
             icon: ee
           }, null),
           dropdown: () => {
             let l;
-            return e(u("el-dropdown-menu"), null, m(l = q.map((g) => e(u("el-dropdown-item"), {
+            return e(u("el-dropdown-menu"), null, b(l = q.map((g) => e(u("el-dropdown-item"), {
               command: g.value,
-              disabled: a === g.value
+              disabled: n === g.value
             }, {
               default: () => [g.label]
             }))) ? l : {
@@ -212,24 +212,24 @@ const le = /* @__PURE__ */ S({
           v.value = l, c("size-change", l);
         }, d = () => {
           c("table-refresh");
-        }, n = () => {
+        }, a = () => {
           y.value = !0;
         };
         return e(L, null, [e("div", null, [e(u("el-button"), {
           circle: !0,
-          size: a,
+          size: n,
           icon: ne,
           onClick: d
         }, null)]), e("div", null, [e(u("el-dropdown"), {
           trigger: "click",
           onCommand: i
-        }, m(o) ? o : {
+        }, b(o) ? o : {
           default: () => [o]
         })]), e("div", null, [e(u("el-button"), {
           circle: !0,
-          size: a,
+          size: n,
           icon: J,
-          onClick: n
+          onClick: a
         }, null)])]);
       }
       function E() {
@@ -248,7 +248,7 @@ const le = /* @__PURE__ */ S({
           "model-value": !0
         }, {
           default: () => [A[l.type]]
-        }), n = {
+        }), a = {
           default: () => h(C).map((l) => l.type && A[l.type] ? d(l) : i(l))
         };
         return e(u("el-drawer"), {
@@ -257,8 +257,8 @@ const le = /* @__PURE__ */ S({
           "model-value": y.value,
           title: "字段管理",
           onClose: o
-        }, m(n) ? n : {
-          default: () => [n]
+        }, b(a) ? a : {
+          default: () => [a]
         });
       }
       return e("div", {
