@@ -101,7 +101,9 @@ const TsxElementTable = defineComponent({
         columnSlots.default = (scope: Record<string, any>) => slot(scope);
       return (
         column.show && (
-          <el-table-column {...column}>{columnSlots}</el-table-column>
+          <el-table-column {...column} key={column.prop}>
+            {columnSlots}
+          </el-table-column>
         )
       );
     }

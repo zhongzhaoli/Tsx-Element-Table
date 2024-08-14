@@ -1,8 +1,8 @@
-import { defineComponent as S, openBlock as x, createElementBlock as T, createElementVNode as w, ref as m, watch as j, createVNode as e, resolveComponent as u, unref as h, getCurrentInstance as M, mergeProps as I, isVNode as R, Fragment as L } from "vue";
-const V = "table-", K = "handle-left", G = !0, A = {
+import { defineComponent as S, openBlock as x, createElementBlock as T, createElementVNode as m, ref as w, watch as M, createVNode as e, resolveComponent as u, unref as h, getCurrentInstance as I, mergeProps as L, isVNode as R, Fragment as A } from "vue";
+const V = "table-", K = "handle-left", G = !0, H = {
   index: "索引",
   selection: "选择"
-}, W = "default", H = 10, B = 1, Z = 0, $ = !0, Y = "total, prev, pager, next, jumper", q = [
+}, W = "default", B = 10, N = 1, Z = 0, $ = !0, Y = "total, prev, pager, next, jumper", q = [
   { value: "large", label: "宽松" },
   { value: "default", label: "默认" },
   { value: "small", label: "紧凑" }
@@ -16,11 +16,11 @@ var X = /* @__PURE__ */ S({
       xmlns: "http://www.w3.org/2000/svg",
       viewBox: "0 0 1024 1024"
     }, [
-      w("path", {
+      m("path", {
         fill: "currentColor",
         d: "M329.956 257.138a254.862 254.862 0 0 0 0 509.724h364.088a254.862 254.862 0 0 0 0-509.724zm0-72.818h364.088a327.68 327.68 0 1 1 0 655.36H329.956a327.68 327.68 0 1 1 0-655.36z"
       }),
-      w("path", {
+      m("path", {
         fill: "currentColor",
         d: "M694.044 621.227a109.227 109.227 0 1 0 0-218.454 109.227 109.227 0 0 0 0 218.454m0 72.817a182.044 182.044 0 1 1 0-364.088 182.044 182.044 0 0 1 0 364.088"
       })
@@ -34,7 +34,7 @@ var X = /* @__PURE__ */ S({
       xmlns: "http://www.w3.org/2000/svg",
       viewBox: "0 0 1024 1024"
     }, [
-      w("path", {
+      m("path", {
         fill: "currentColor",
         d: "M389.44 768a96.064 96.064 0 0 1 181.12 0H896v64H570.56a96.064 96.064 0 0 1-181.12 0H128v-64zm192-288a96.064 96.064 0 0 1 181.12 0H896v64H762.56a96.064 96.064 0 0 1-181.12 0H128v-64zm-320-288a96.064 96.064 0 0 1 181.12 0H896v64H442.56a96.064 96.064 0 0 1-181.12 0H128v-64z"
       })
@@ -48,7 +48,7 @@ var X = /* @__PURE__ */ S({
       xmlns: "http://www.w3.org/2000/svg",
       viewBox: "0 0 1024 1024"
     }, [
-      w("path", {
+      m("path", {
         fill: "currentColor",
         d: "M771.776 794.88A384 384 0 0 1 128 512h64a320 320 0 0 0 555.712 216.448H654.72a32 32 0 1 1 0-64h149.056a32 32 0 0 1 32 32v148.928a32 32 0 1 1-64 0v-50.56zM276.288 295.616h92.992a32 32 0 0 1 0 64H220.16a32 32 0 0 1-32-32V178.56a32 32 0 0 1 64 0v50.56A384 384 0 0 1 896.128 512h-64a320 320 0 0 0-555.776-216.384z"
       })
@@ -82,21 +82,21 @@ const le = /* @__PURE__ */ S({
     },
     currentPage: {
       type: Number,
-      default: B
+      default: N
     },
     pageSize: {
       type: Number,
-      default: H
+      default: B
     }
   },
   setup(t, {
     slots: p,
     emit: c,
-    expose: N
+    expose: k
   }) {
-    const v = m(t.size), z = m(null), C = m();
-    j(() => t.table, (r) => {
-      C.value = r.columns.map((n) => ({
+    const v = w(t.size), z = w(null), y = w();
+    M(() => t.table, (r) => {
+      y.value = r.columns.map((n) => ({
         ...n,
         show: n.show ?? !0
       }));
@@ -104,8 +104,8 @@ const le = /* @__PURE__ */ S({
       deep: !0,
       immediate: !0
     });
-    const y = m(!1);
-    N({
+    const C = w(!1);
+    k({
       getTableRef: () => z.value
     });
     function O(r) {
@@ -115,15 +115,17 @@ const le = /* @__PURE__ */ S({
     function P() {
       return p[K];
     }
-    function k(r) {
+    function U(r) {
       const n = {}, s = O(r);
-      return s && (n.default = (f) => s(f)), r.show && e(u("el-table-column"), r, b(n) ? n : {
+      return s && (n.default = (f) => s(f)), r.show && e(u("el-table-column"), L(r, {
+        key: r.prop
+      }), b(n) ? n : {
         default: () => [n]
       });
     }
-    function U() {
+    function D() {
       var i, d;
-      const r = (t == null ? void 0 : t.currentPage) || B, n = (t == null ? void 0 : t.pageSize) || H, s = ((i = t == null ? void 0 : t.pagination) == null ? void 0 : i.total) || Z, f = ((d = t.pagination) == null ? void 0 : d.show) ?? $;
+      const r = (t == null ? void 0 : t.currentPage) || N, n = (t == null ? void 0 : t.pageSize) || B, s = ((i = t == null ? void 0 : t.pagination) == null ? void 0 : i.total) || Z, f = ((d = t.pagination) == null ? void 0 : d.show) ?? $;
       if (!(f === "auto" ? s > n : f)) return;
       const _ = (a) => {
         c("update:currentPage", a), c("page-change", {
@@ -148,12 +150,12 @@ const le = /* @__PURE__ */ S({
         onSizeChange: o
       }, null)]);
     }
-    function D() {
+    function F() {
       var _;
       let r;
       const {
         table: n
-      } = t, s = M(), f = {};
+      } = t, s = I(), f = {};
       return Object.keys(((_ = s == null ? void 0 : s.vnode) == null ? void 0 : _.props) ?? []).filter((o) => o.startsWith("on") && !o.startsWith("onUpdate")).forEach((o) => {
         const d = o.replace("on", "").replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
         f[o] = (...a) => {
@@ -161,14 +163,14 @@ const le = /* @__PURE__ */ S({
         };
       }), e("div", {
         className: "tetTableBox"
-      }, [e(u("el-table"), I({
+      }, [e(u("el-table"), L({
         ref: z,
         size: h(v)
-      }, f, n), b(r = h(C).map((o) => k(o))) ? r : {
+      }, f, n), b(r = h(y).map((o) => U(o))) ? r : {
         default: () => [r]
       })]);
     }
-    function F() {
+    function j() {
       var _;
       if (!t.handle || !(((_ = t.handle) == null ? void 0 : _.show) ?? G)) return;
       const n = h(v) === "large" ? "default" : h(v);
@@ -177,7 +179,7 @@ const le = /* @__PURE__ */ S({
         const o = (a) => {
           c("handle-click", a);
         }, i = P();
-        return e(L, null, [e("div", {
+        return e(A, null, [e("div", {
           className: "tetHandleLeftBtnBox"
         }, [(((d = t.handle) == null ? void 0 : d.columns) || []).map((a) => e(u("el-button"), {
           size: n,
@@ -213,9 +215,9 @@ const le = /* @__PURE__ */ S({
         }, d = () => {
           c("table-refresh");
         }, a = () => {
-          y.value = !0;
+          C.value = !0;
         };
-        return e(L, null, [e("div", null, [e(u("el-button"), {
+        return e(A, null, [e("div", null, [e(u("el-button"), {
           circle: !0,
           size: n,
           icon: ne,
@@ -234,7 +236,7 @@ const le = /* @__PURE__ */ S({
       }
       function E() {
         const o = () => {
-          y.value = !1;
+          C.value = !1;
         }, i = (l) => e(u("el-checkbox"), {
           key: "normal",
           modelValue: l.show,
@@ -247,14 +249,14 @@ const le = /* @__PURE__ */ S({
           disabled: !0,
           "model-value": !0
         }, {
-          default: () => [A[l.type]]
+          default: () => [H[l.type]]
         }), a = {
-          default: () => h(C).map((l) => l.type && A[l.type] ? d(l) : i(l))
+          default: () => h(y).map((l) => l.type && H[l.type] ? d(l) : i(l))
         };
         return e(u("el-drawer"), {
           width: "320px",
           "append-to-body": !0,
-          "model-value": y.value,
+          "model-value": C.value,
           title: "字段管理",
           onClose: o
         }, b(a) ? a : {
@@ -271,7 +273,7 @@ const le = /* @__PURE__ */ S({
     }
     return () => e("div", {
       className: "TsxElementTableContainer"
-    }, [F(), D(), U()]);
+    }, [j(), F(), D()]);
   }
 });
 export {
