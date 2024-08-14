@@ -3,6 +3,9 @@ import { ComponentSize, PaginationShow } from './types.ts';
 // 表格插槽前缀
 export const DEFAULT_COLUMN_SLOT_PREFIX: string = 'table-';
 
+// 表格header插槽后缀
+export const DEFAULT_COLUMN_HEADER_SLOT_SUFFIX: string = '-header';
+
 // 操作按钮插槽Key
 export const DEFAULT_HANDLE_SLOT_KEY: string = 'handle-left';
 

@@ -27,6 +27,7 @@ import {
   DEFAULT_HANDLE_SHOW,
   DEFAULT_PAGE_SHOW,
   DEFAULT_PAGE_TOTAL,
+  DEFAULT_COLUMN_HEADER_SLOT_SUFFIX,
 } from './constant';
 import './index.css';
 import { Refresh, Operation, Open } from '@element-plus/icons-vue';
@@ -87,6 +88,11 @@ const TsxElementTable = defineComponent({
       const slotName = `${DEFAULT_COLUMN_SLOT_PREFIX}${column.prop}`;
       return slots[slotName];
     }
+    // 根据column的prop属性，获取对应的Header插槽内容
+    function getColumnHeaderSlot(column: HandleDisplayProps) {
+      const slotName = `${DEFAULT_COLUMN_SLOT_PREFIX}${column.prop}${DEFAULT_COLUMN_HEADER_SLOT_SUFFIX}`;
+      return slots[slotName];
+    }
     // 获取handleLeft的prop属性，获取对应的插槽内容
     function getHandleSlot() {
       return slots[DEFAULT_HANDLE_SLOT_KEY];
@@ -95,10 +101,14 @@ const TsxElementTable = defineComponent({
     function renderTableColumn(column: HandleDisplayProps) {
       const columnSlots: {
         default?: ColumnSlotCallback;
+        header?: ColumnSlotCallback;
       } = {};
       const slot = getColumnSlot(column);
+      const headerSlot = getColumnHeaderSlot(column);
       if (slot)
         columnSlots.default = (scope: Record<string, any>) => slot(scope);
+      if (headerSlot)
+        columnSlots.header = (scope: Record<string, any>) => headerSlot(scope);
       return (
         column.show && (
           <el-table-column {...column} key={column.prop}>
