@@ -173,10 +173,11 @@ import { type ComponentProps } from 'tsx-element-table';
 
 ### TsxElementTable 插槽
 
-| 插槽名       | 说明             |
-| :----------- | :--------------- |
-| table-{prop} | 自定义表格列数据 |
-| handle-left  | 自定义左侧操作栏 |
+| 插槽名              | 说明             |
+| :------------------ | :--------------- |
+| table-{prop}        | 自定义表格列数据 |
+| table-{prop}-header | 自定义表格列头   |
+| handle-left         | 自定义左侧操作栏 |
 
 ### TsxElementTable 方法
 
