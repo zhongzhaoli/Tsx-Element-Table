@@ -1,6 +1,6 @@
 {
   "name": "tsx-element-table",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "基于Vue3+Element+Tsx二次开发的ElTable组件",
   "main": "dist/tsx-element-table.umd.js",
   "module": "dist/tsx-element-table.es.js",
