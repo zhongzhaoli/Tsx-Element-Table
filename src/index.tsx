@@ -202,7 +202,7 @@ const TsxElementTable = defineComponent({
               {(props.handle?.columns || []).map((item) => {
                 return (
                   <el-button
-                    size={handleSize}
+                    size={unref(handleSize)}
                     key={item.key}
                     type={item.type || ''}
                     onClick={item.action ?? (() => handleClick(item.key))}
@@ -219,7 +219,11 @@ const TsxElementTable = defineComponent({
       function renderRight() {
         const dropdownSlot = {
           default: () => (
-            <el-button circle size={handleSize} icon={Operation}></el-button>
+            <el-button
+              circle
+              size={unref(handleSize)}
+              icon={Operation}
+            ></el-button>
           ),
           dropdown: () => (
             <el-dropdown-menu>
@@ -249,7 +253,7 @@ const TsxElementTable = defineComponent({
             <div>
               <el-button
                 circle
-                size={handleSize}
+                size={unref(handleSize)}
                 icon={Refresh}
                 onClick={tableRefresh}
               ></el-button>
@@ -262,7 +266,7 @@ const TsxElementTable = defineComponent({
             <div>
               <el-button
                 circle
-                size={handleSize}
+                size={unref(handleSize)}
                 icon={Open}
                 onClick={openDrawer}
               ></el-button>
