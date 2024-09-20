@@ -5,6 +5,7 @@ import {
   unref,
   getCurrentInstance,
   watch,
+  computed,
 } from 'vue';
 import {
   type ColumnSlotCallback,
@@ -186,8 +187,9 @@ const TsxElementTable = defineComponent({
       const handleShow = props.handle?.show ?? DEFAULT_HANDLE_SHOW;
       if (!handleShow) return;
       // 左侧可配置options，或者slot
-      const handleSize =
-        unref(componentSize) === 'large' ? 'default' : unref(componentSize);
+      const handleSize = computed(() =>
+        unref(componentSize) === 'large' ? 'default' : unref(componentSize)
+      );
       function renderLeft() {
         // 通用左侧按钮点击
         const handleClick = (key: string) => {
@@ -224,7 +226,7 @@ const TsxElementTable = defineComponent({
               {COMPONENT_SIZE_LIST.map((item) => (
                 <el-dropdown-item
                   command={item.value}
-                  disabled={handleSize === item.value}
+                  disabled={componentSize === item.value}
                 >
                   {item.label}
                 </el-dropdown-item>
