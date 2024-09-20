@@ -1,4 +1,4 @@
-import { defineComponent as C, openBlock as T, createElementBlock as x, createElementVNode as S, ref as w, watch as R, createVNode as e, resolveComponent as u, unref as g, getCurrentInstance as V, mergeProps as z, computed as $, isVNode as K, Fragment as A } from "vue";
+import { defineComponent as C, openBlock as T, createElementBlock as x, createElementVNode as S, ref as w, watch as R, createVNode as e, resolveComponent as u, unref as p, getCurrentInstance as V, mergeProps as z, computed as $, isVNode as K, Fragment as A } from "vue";
 const H = "table-", G = "-header", W = "handle-left", Z = !0, N = {
   index: "索引",
   selection: "选择"
@@ -12,7 +12,7 @@ var ee = /* @__PURE__ */ C({
   name: "Open",
   __name: "open",
   setup(t) {
-    return (p, c) => (T(), x("svg", {
+    return (v, c) => (T(), x("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       viewBox: "0 0 1024 1024"
     }, [
@@ -30,7 +30,7 @@ var ee = /* @__PURE__ */ C({
   name: "Operation",
   __name: "operation",
   setup(t) {
-    return (p, c) => (T(), x("svg", {
+    return (v, c) => (T(), x("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       viewBox: "0 0 1024 1024"
     }, [
@@ -44,7 +44,7 @@ var ee = /* @__PURE__ */ C({
   name: "Refresh",
   __name: "refresh",
   setup(t) {
-    return (p, c) => (T(), x("svg", {
+    return (v, c) => (T(), x("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       viewBox: "0 0 1024 1024"
     }, [
@@ -90,11 +90,11 @@ const ue = /* @__PURE__ */ C({
     }
   },
   setup(t, {
-    slots: p,
+    slots: v,
     emit: c,
     expose: k
   }) {
-    const v = w(t.size), L = w(null), E = w();
+    const g = w(t.size), L = w(null), E = w();
     R(() => t.table, (l) => {
       E.value = l.columns.map((n) => ({
         ...n,
@@ -110,14 +110,14 @@ const ue = /* @__PURE__ */ C({
     });
     function P(l) {
       const n = `${H}${l.prop}`;
-      return p[n];
+      return v[n];
     }
     function U(l) {
       const n = `${H}${l.prop}${G}`;
-      return p[n];
+      return v[n];
     }
     function D() {
-      return p[W];
+      return v[W];
     }
     function F(l) {
       const n = {}, s = P(l), i = U(l);
@@ -145,7 +145,7 @@ const ue = /* @__PURE__ */ C({
       return e("div", {
         className: "tetPaginationBox"
       }, [e(u("el-pagination"), {
-        size: g(v),
+        size: p(g),
         defaultCurrentPage: l,
         pageSize: n,
         total: s,
@@ -169,15 +169,15 @@ const ue = /* @__PURE__ */ C({
         className: "tetTableBox"
       }, [e(u("el-table"), z({
         ref: L,
-        size: g(v)
-      }, i, n), b(l = g(E).map((r) => F(r))) ? l : {
+        size: p(g)
+      }, i, n), b(l = p(E).map((r) => F(r))) ? l : {
         default: () => [l]
       })]);
     }
     function I() {
       var h;
       if (!t.handle || !(((h = t.handle) == null ? void 0 : h.show) ?? Z)) return;
-      const n = $(() => g(v) === "large" ? "default" : g(v));
+      const n = $(() => p(g) === "large" ? "default" : p(g));
       function s() {
         var d;
         const r = (a) => {
@@ -207,7 +207,7 @@ const ue = /* @__PURE__ */ C({
             let o;
             return e(u("el-dropdown-menu"), null, b(o = Q.map((m) => e(u("el-dropdown-item"), {
               command: m.value,
-              disabled: v === m.value
+              disabled: p(g) === m.value
             }, {
               default: () => [m.label]
             }))) ? o : {
@@ -215,7 +215,7 @@ const ue = /* @__PURE__ */ C({
             });
           }
         }, _ = (o) => {
-          v.value = o, c("size-change", o);
+          g.value = o, c("size-change", o);
         }, d = () => {
           c("table-refresh");
         }, a = () => {
@@ -255,7 +255,7 @@ const ue = /* @__PURE__ */ C({
         }, {
           default: () => [N[o.type]]
         }), a = {
-          default: () => g(E).map((o) => o.type && N[o.type] ? d(o) : _(o))
+          default: () => p(E).map((o) => o.type && N[o.type] ? d(o) : _(o))
         };
         return e(u("el-drawer"), {
           width: "320px",

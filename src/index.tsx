@@ -226,7 +226,7 @@ const TsxElementTable = defineComponent({
               {COMPONENT_SIZE_LIST.map((item) => (
                 <el-dropdown-item
                   command={item.value}
-                  disabled={componentSize === item.value}
+                  disabled={unref(componentSize) === item.value}
                 >
                   {item.label}
                 </el-dropdown-item>
