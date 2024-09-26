@@ -2,7 +2,7 @@ import { defineComponent as E, openBlock as T, createElementBlock as z, createEl
 const H = "table-", K = "-header", Z = "handle-left", W = !0, N = {
   index: "索引",
   selection: "选择"
-}, X = "default", O = 10, B = 1, Y = 0, q = !0, J = "total, sizes, prev, pager, next, jumper", Q = [10, 20, 50, 100, 200], ee = [
+}, X = "default", O = 10, B = 1, Y = 0, q = !0, J = "total, sizes, prev, pager, next, jumper", Q = [10, 20, 50, 100], ee = [
   { value: "large", label: "宽松" },
   { value: "default", label: "默认" },
   { value: "small", label: "紧凑" }

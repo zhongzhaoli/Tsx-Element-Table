@@ -38,7 +38,7 @@ export const DEFAULT_PAGE_LAYOUT: string =
   'total, sizes, prev, pager, next, jumper';
 
 // 默认页码列表
-export const DEFAULT_PAGE_SIZES: number[] = [10, 20, 50, 100, 200];
+export const DEFAULT_PAGE_SIZES: number[] = [10, 20, 50, 100];
 
 // 组件大小列表
 export const COMPONENT_SIZE_LIST: { value: ComponentSize; label: string }[] = [
