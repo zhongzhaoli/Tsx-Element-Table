@@ -29,6 +29,7 @@ import {
   DEFAULT_PAGE_SHOW,
   DEFAULT_PAGE_TOTAL,
   DEFAULT_COLUMN_HEADER_SLOT_SUFFIX,
+  DEFAULT_PAGE_SIZES,
 } from './constant';
 import './index.css';
 import { Refresh, Operation, Open } from '@element-plus/icons-vue';
@@ -142,7 +143,8 @@ const TsxElementTable = defineComponent({
             defaultCurrentPage={currentPage}
             pageSize={pageSize}
             total={total}
-            layout={DEFAULT_PAGE_LAYOUT}
+            pageSizes={props.pagination?.pageSizes || DEFAULT_PAGE_SIZES}
+            layout={props.pagination?.layout || DEFAULT_PAGE_LAYOUT}
             onCurrentChange={onPageChange}
             onSizeChange={onSizeChange}
           />

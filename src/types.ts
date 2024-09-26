@@ -41,6 +41,8 @@ export interface HandleProps {
 export interface PaginationProps {
   total?: number;
   show?: PaginationShow;
+  pageSizes?: number[];
+  layout?: string;
 }
 
 export interface ComponentProps {

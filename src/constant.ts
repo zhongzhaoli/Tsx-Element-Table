@@ -34,7 +34,11 @@ export const DEFAULT_PAGE_TOTAL: number = 0;
 export const DEFAULT_PAGE_SHOW: PaginationShow = true;
 
 // 默认分页布局
-export const DEFAULT_PAGE_LAYOUT: string = 'total, prev, pager, next, jumper';
+export const DEFAULT_PAGE_LAYOUT: string =
+  'total, sizes, prev, pager, next, jumper';
+
+// 默认页码列表
+export const DEFAULT_PAGE_SIZES: number[] = [10, 20, 50, 100, 200];
 
 // 组件大小列表
 export const COMPONENT_SIZE_LIST: { value: ComponentSize; label: string }[] = [
