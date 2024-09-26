@@ -250,8 +250,28 @@ const TsxElementTable = defineComponent({
         const openDrawer = () => {
           drawerVisible.value = true;
         };
+        const handleRightClick = (key: string) => {
+          emit('handle-right-click', key);
+        };
+        const renderRightColumns = () => {
+          if (props.handle?.rightColumns) {
+            return props.handle?.rightColumns.map((item) => {
+              return (
+                <div>
+                  <el-button
+                    circle
+                    size={unref(handleSize)}
+                    icon={item.icon}
+                    onClick={handleRightClick(item.key)}
+                  ></el-button>
+                </div>
+              );
+            });
+          }
+        };
         return (
           <>
+            {renderRightColumns()}
             <div>
               <el-button
                 circle

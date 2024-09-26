@@ -30,12 +30,18 @@ export interface HandleColumnProps {
   action?: () => void;
 }
 
+export interface HandleRightColumnProps {
+  icon: ElButtonProps['icon'];
+  key: string;
+}
+
 // 三件套
 export interface TableProps extends ElTableProps {
   columns: TableColumnProps[];
 }
 export interface HandleProps {
   columns?: HandleColumnProps[];
+  rightColumns?: HandleRightColumnProps[];
   show?: boolean;
 }
 export interface PaginationProps {

@@ -142,10 +142,18 @@ import { type ComponentProps } from 'tsx-element-table';
 
 #### HandleProps
 
-| 属性名  | 说明       | 类型                | 默认值 |
-| :------ | :--------- | :------------------ | :----- |
-| columns | 操作列数组 | HandleColumnProps[] | []     |
-| show    | 展示       | boolean             | true   |
+| 属性名       | 说明           | 类型                     | 默认值 |
+| :----------- | :------------- | :----------------------- | :----- |
+| columns      | 操作列数组     | HandleColumnProps[]      | []     |
+| rightColumns | 右侧操作列数组 | HandleRightColumnProps[] | []     |
+| show         | 展示           | boolean                  | true   |
+
+#### HandleRightColumnProps
+
+| 属性名 | 说明     | 类型             | 默认值 |
+| :----- | :------- | :--------------- | :----- |
+| key    | 唯一标识 | string           | -      |
+| icon   | 图标     | ElButton['icon'] | -      |
 
 #### HandleColumnProps
 
@@ -166,10 +174,12 @@ import { type ComponentProps } from 'tsx-element-table';
 
 #### PaginationProps
 
-| 属性名 | 说明   | 类型           | 默认值 |
-| :----- | :----- | :------------- | :----- |
-| total  | 数据量 | number         | 0      |
-| show   | 展示   | PaginationShow | true   |
+| 属性名    | 说明     | 类型           | 默认值                                  |
+| :-------- | :------- | :------------- | :-------------------------------------- |
+| total     | 数据量   | number         | 0                                       |
+| show      | 展示     | PaginationShow | true                                    |
+| layout    | 排列     | string         | total, sizes, prev, pager, next, jumper |
+| pageSizes | 页码列表 | number[]       | [10, 20, 50, 100]                       |
 
 ### TsxElementTable 插槽
 
