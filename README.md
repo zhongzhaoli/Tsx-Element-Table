@@ -150,10 +150,11 @@ import { type ComponentProps } from 'tsx-element-table';
 
 #### HandleRightColumnProps
 
-| 属性名 | 说明     | 类型             | 默认值 |
-| :----- | :------- | :--------------- | :----- |
-| key    | 唯一标识 | string           | -      |
-| icon   | 图标     | ElButton['icon'] | -      |
+| 属性名  | 说明     | 类型             | 默认值 |
+| :------ | :------- | :--------------- | :----- |
+| key     | 唯一标识 | string           | -      |
+| tooltip | 提示词   | string           | -      |
+| icon    | 图标     | ElButton['icon'] | -      |
 
 #### HandleColumnProps
 

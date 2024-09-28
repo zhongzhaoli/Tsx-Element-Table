@@ -176,7 +176,7 @@ const TsxElementTable = defineComponent({
             {...events}
             {...table}
           >
-            {unref(columns).map((column: HandleDisplayProps) => {
+            {(unref(columns) || []).map((column: HandleDisplayProps) => {
               return renderTableColumn(column);
             })}
           </el-table>
@@ -258,12 +258,14 @@ const TsxElementTable = defineComponent({
             return props.handle?.rightColumns.map((item) => {
               return (
                 <div>
-                  <el-button
-                    circle
-                    size={unref(handleSize)}
-                    icon={item.icon}
-                    onClick={handleRightClick(item.key)}
-                  ></el-button>
+                  <el-tooltip content={item.tooltip}>
+                    <el-button
+                      circle
+                      size={unref(handleSize)}
+                      icon={item.icon}
+                      onClick={handleRightClick(item.key)}
+                    ></el-button>
+                  </el-tooltip>
                 </div>
               );
             });
@@ -273,25 +275,31 @@ const TsxElementTable = defineComponent({
           <>
             {renderRightColumns()}
             <div>
-              <el-button
-                circle
-                size={unref(handleSize)}
-                icon={Refresh}
-                onClick={tableRefresh}
-              ></el-button>
+              <el-tooltip content="表格刷新">
+                <el-button
+                  circle
+                  size={unref(handleSize)}
+                  icon={Refresh}
+                  onClick={tableRefresh}
+                ></el-button>
+              </el-tooltip>
             </div>
             <div>
-              <el-dropdown trigger="click" onCommand={sizeChange}>
-                {dropdownSlot}
-              </el-dropdown>
+              <el-tooltip content="表格大小">
+                <el-dropdown trigger="click" onCommand={sizeChange}>
+                  {dropdownSlot}
+                </el-dropdown>
+              </el-tooltip>
             </div>
             <div>
-              <el-button
-                circle
-                size={unref(handleSize)}
-                icon={Open}
-                onClick={openDrawer}
-              ></el-button>
+              <el-tooltip content="字段管理">
+                <el-button
+                  circle
+                  size={unref(handleSize)}
+                  icon={Open}
+                  onClick={openDrawer}
+                ></el-button>
+              </el-tooltip>
             </div>
           </>
         );
@@ -316,7 +324,7 @@ const TsxElementTable = defineComponent({
         };
         const drawerSlot = {
           default: () =>
-            unref(columns).map((column: HandleDisplayProps) => {
+            (unref(columns) || []).map((column: HandleDisplayProps) => {
               return column.type && SPECIAL_COLUMN[column.type]
                 ? specialCheckBox(column)
                 : normalCheckBox(column);
