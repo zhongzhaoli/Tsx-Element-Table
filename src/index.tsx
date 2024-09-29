@@ -121,8 +121,8 @@ const TsxElementTable = defineComponent({
     }
     // 生成分页器
     function renderPagination() {
-      const currentPage = props?.currentPage || DEFAULT_PAGE;
-      const pageSize = props?.pageSize || DEFAULT_PAGE_SIZE;
+      const currentPage = ref(props?.currentPage || DEFAULT_PAGE);
+      const pageSize = ref(props?.pageSize || DEFAULT_PAGE_SIZE);
       const total = props?.pagination?.total || DEFAULT_PAGE_TOTAL;
       const _paginationShow = props.pagination?.show ?? DEFAULT_PAGE_SHOW;
       const paginationShow =
@@ -134,14 +134,14 @@ const TsxElementTable = defineComponent({
       };
       const onSizeChange = (pageSize: number) => {
         emit('update:pageSize', pageSize);
-        emit('page-change', { currentPage, pageSize });
+        emit('page-change', { currentPage: currentPage.value, pageSize });
       };
       return (
         <div className="tetPaginationBox">
           <el-pagination
             size={unref(componentSize)}
-            defaultCurrentPage={currentPage}
-            pageSize={pageSize}
+            v-model:current-page={currentPage.value}
+            v-model:page-size={pageSize.value}
             total={total}
             pageSizes={props.pagination?.pageSizes || DEFAULT_PAGE_SIZES}
             layout={props.pagination?.layout || DEFAULT_PAGE_LAYOUT}
