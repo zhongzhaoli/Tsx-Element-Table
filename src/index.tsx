@@ -263,7 +263,7 @@ const TsxElementTable = defineComponent({
                       circle
                       size={unref(handleSize)}
                       icon={item.icon}
-                      onClick={handleRightClick(item.key)}
+                      onClick={() => handleRightClick(item.key)}
                     ></el-button>
                   </el-tooltip>
                 </div>

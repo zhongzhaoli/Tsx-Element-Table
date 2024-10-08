@@ -236,7 +236,7 @@ const de = /* @__PURE__ */ y({
                 circle: !0,
                 size: i(n),
                 icon: A.icon,
-                onClick: u(A.key)
+                onClick: () => u(A.key)
               }, null)]
             })]));
         })(), e("div", null, [e(o("el-tooltip"), {
