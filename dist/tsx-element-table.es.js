@@ -1,4 +1,4 @@
-import { defineComponent as y, openBlock as L, createElementBlock as x, createElementVNode as E, ref as C, watch as G, createVNode as e, resolveComponent as o, unref as i, getCurrentInstance as K, mergeProps as B, computed as Z, isVNode as W, Fragment as k } from "vue";
+import { defineComponent as z, openBlock as L, createElementBlock as x, createElementVNode as y, ref as C, watch as G, createVNode as e, resolveComponent as o, unref as s, getCurrentInstance as K, mergeProps as B, computed as Z, isVNode as W, Fragment as k } from "vue";
 const N = "table-", X = "-header", Y = "handle-left", q = !0, O = {
   index: "索引",
   selection: "选择"
@@ -8,57 +8,57 @@ const N = "table-", X = "-header", Y = "handle-left", q = !0, O = {
   { value: "small", label: "紧凑" }
 ];
 /*! Element Plus Icons Vue v2.3.1 */
-var le = /* @__PURE__ */ y({
+var le = /* @__PURE__ */ z({
   name: "Open",
   __name: "open",
   setup(t) {
-    return (m, c) => (L(), x("svg", {
+    return (b, c) => (L(), x("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       viewBox: "0 0 1024 1024"
     }, [
-      E("path", {
+      y("path", {
         fill: "currentColor",
         d: "M329.956 257.138a254.862 254.862 0 0 0 0 509.724h364.088a254.862 254.862 0 0 0 0-509.724zm0-72.818h364.088a327.68 327.68 0 1 1 0 655.36H329.956a327.68 327.68 0 1 1 0-655.36z"
       }),
-      E("path", {
+      y("path", {
         fill: "currentColor",
         d: "M694.044 621.227a109.227 109.227 0 1 0 0-218.454 109.227 109.227 0 0 0 0 218.454m0 72.817a182.044 182.044 0 1 1 0-364.088 182.044 182.044 0 0 1 0 364.088"
       })
     ]));
   }
-}), oe = le, re = /* @__PURE__ */ y({
+}), oe = le, re = /* @__PURE__ */ z({
   name: "Operation",
   __name: "operation",
   setup(t) {
-    return (m, c) => (L(), x("svg", {
+    return (b, c) => (L(), x("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       viewBox: "0 0 1024 1024"
     }, [
-      E("path", {
+      y("path", {
         fill: "currentColor",
         d: "M389.44 768a96.064 96.064 0 0 1 181.12 0H896v64H570.56a96.064 96.064 0 0 1-181.12 0H128v-64zm192-288a96.064 96.064 0 0 1 181.12 0H896v64H762.56a96.064 96.064 0 0 1-181.12 0H128v-64zm-320-288a96.064 96.064 0 0 1 181.12 0H896v64H442.56a96.064 96.064 0 0 1-181.12 0H128v-64z"
       })
     ]));
   }
-}), ue = re, ce = /* @__PURE__ */ y({
+}), ue = re, ce = /* @__PURE__ */ z({
   name: "Refresh",
   __name: "refresh",
   setup(t) {
-    return (m, c) => (L(), x("svg", {
+    return (b, c) => (L(), x("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       viewBox: "0 0 1024 1024"
     }, [
-      E("path", {
+      y("path", {
         fill: "currentColor",
         d: "M771.776 794.88A384 384 0 0 1 128 512h64a320 320 0 0 0 555.712 216.448H654.72a32 32 0 1 1 0-64h149.056a32 32 0 0 1 32 32v148.928a32 32 0 1 1-64 0v-50.56zM276.288 295.616h92.992a32 32 0 0 1 0 64H220.16a32 32 0 0 1-32-32V178.56a32 32 0 0 1 64 0v50.56A384 384 0 0 1 896.128 512h-64a320 320 0 0 0-555.776-216.384z"
       })
     ]));
   }
-}), se = ce;
-function S(t) {
+}), ie = ce;
+function E(t) {
   return typeof t == "function" || Object.prototype.toString.call(t) === "[object Object]" && !W(t);
 }
-const de = /* @__PURE__ */ y({
+const de = /* @__PURE__ */ z({
   name: "TsxElementTable",
   props: {
     // Normal
@@ -90,13 +90,13 @@ const de = /* @__PURE__ */ y({
     }
   },
   setup(t, {
-    slots: m,
+    slots: b,
     emit: c,
     expose: D
   }) {
-    const b = C(t.size), H = C(null), z = C();
+    const m = C(t.size), H = C(null), T = C();
     G(() => t.table, (a) => {
-      z.value = a.columns.map((n) => ({
+      T.value = a.columns.map((n) => ({
         ...n,
         show: n.show ?? !0
       }));
@@ -104,26 +104,26 @@ const de = /* @__PURE__ */ y({
       deep: !0,
       immediate: !0
     });
-    const T = C(!1);
+    const A = C(!1);
     D({
       getTableRef: () => H.value
     });
     function F(a) {
       const n = `${N}${a.prop}`;
-      return m[n];
+      return b[n];
     }
     function R(a) {
       const n = `${N}${a.prop}${X}`;
-      return m[n];
+      return b[n];
     }
     function I() {
-      return m[Y];
+      return b[Y];
     }
     function M(a) {
       const n = {}, d = F(a), _ = R(a);
       return d && (n.default = (p) => d(p)), _ && (n.header = (p) => _(p)), a.show && e(o("el-table-column"), B(a, {
         key: a.prop
-      }), S(n) ? n : {
+      }), E(n) ? n : {
         default: () => [n]
       });
     }
@@ -131,25 +131,25 @@ const de = /* @__PURE__ */ y({
       var g, f, l, u;
       const a = C((t == null ? void 0 : t.currentPage) || P), n = C((t == null ? void 0 : t.pageSize) || U), d = ((g = t == null ? void 0 : t.pagination) == null ? void 0 : g.total) || Q, _ = ((f = t.pagination) == null ? void 0 : f.show) ?? ee;
       if (!(_ === "auto" ? d > n : _)) return;
-      const v = (s) => {
-        c("update:currentPage", s), c("page-change", {
-          currentPage: s,
+      const v = (i) => {
+        c("update:currentPage", i), c("page-change", {
+          currentPage: i,
           pageSize: n
         });
-      }, r = (s) => {
-        c("update:pageSize", s), c("page-change", {
+      }, r = (i) => {
+        c("update:pageSize", i), c("page-change", {
           currentPage: a.value,
-          pageSize: s
+          pageSize: i
         });
       };
       return e("div", {
         className: "tetPaginationBox"
       }, [e(o("el-pagination"), {
-        size: i(b),
+        size: s(m),
         "current-page": a.value,
-        "onUpdate:current-page": (s) => a.value = s,
+        "onUpdate:current-page": (i) => a.value = i,
         "page-size": n.value,
-        "onUpdate:page-size": (s) => n.value = s,
+        "onUpdate:page-size": (i) => n.value = i,
         total: d,
         pageSizes: ((l = t.pagination) == null ? void 0 : l.pageSizes) || ne,
         layout: ((u = t.pagination) == null ? void 0 : u.layout) || te,
@@ -172,15 +172,15 @@ const de = /* @__PURE__ */ y({
         className: "tetTableBox"
       }, [e(o("el-table"), B({
         ref: H,
-        size: i(b)
-      }, _, n), S(a = (i(z) || []).map((r) => M(r))) ? a : {
+        size: s(m)
+      }, _, n), E(a = (s(T) || []).map((r) => M(r))) ? a : {
         default: () => [a]
       })]);
     }
     function $() {
       var v;
       if (!t.handle || !(((v = t.handle) == null ? void 0 : v.show) ?? q)) return;
-      const n = Z(() => i(b) === "large" ? "default" : i(b));
+      const n = Z(() => s(m) === "large" ? "default" : s(m));
       function d() {
         var f;
         const r = (l) => {
@@ -189,7 +189,7 @@ const de = /* @__PURE__ */ y({
         return e(k, null, [e("div", {
           className: "tetHandleLeftBtnBox"
         }, [(((f = t.handle) == null ? void 0 : f.columns) || []).map((l) => e(o("el-button"), {
-          size: i(n),
+          size: s(n),
           key: l.key,
           type: l.type || "",
           onClick: l.action ?? (() => r(l.key))
@@ -203,14 +203,14 @@ const de = /* @__PURE__ */ y({
         const r = {
           default: () => e(o("el-button"), {
             circle: !0,
-            size: i(n),
+            size: s(n),
             icon: ue
           }, null),
           dropdown: () => {
             let h;
-            return e(o("el-dropdown-menu"), null, S(h = ae.map((w) => e(o("el-dropdown-item"), {
+            return e(o("el-dropdown-menu"), null, E(h = ae.map((w) => e(o("el-dropdown-item"), {
               command: w.value,
-              disabled: i(b) === w.value
+              disabled: s(m) === w.value
             }, {
               default: () => [w.label]
             }))) ? h : {
@@ -218,25 +218,26 @@ const de = /* @__PURE__ */ y({
             });
           }
         }, g = (h) => {
-          b.value = h, c("size-change", h);
+          m.value = h, c("size-change", h);
         }, f = () => {
           c("table-refresh");
         }, l = () => {
-          T.value = !0;
+          A.value = !0;
         }, u = (h) => {
           c("handle-right-click", h);
         };
         return e(k, null, [(() => {
           var h, w;
           if ((h = t.handle) != null && h.rightColumns)
-            return (w = t.handle) == null ? void 0 : w.rightColumns.map((A) => e("div", null, [e(o("el-tooltip"), {
-              content: A.tooltip
+            return (w = t.handle) == null ? void 0 : w.rightColumns.map((S) => e("div", null, [e(o("el-tooltip"), {
+              content: S.tooltip
             }, {
               default: () => [e(o("el-button"), {
                 circle: !0,
-                size: i(n),
-                icon: A.icon,
-                onClick: () => u(A.key)
+                loading: "loading" in S && S.loading,
+                size: s(n),
+                icon: S.icon,
+                onClick: () => u(S.key)
               }, null)]
             })]));
         })(), e("div", null, [e(o("el-tooltip"), {
@@ -244,8 +245,8 @@ const de = /* @__PURE__ */ y({
         }, {
           default: () => [e(o("el-button"), {
             circle: !0,
-            size: i(n),
-            icon: se,
+            size: s(n),
+            icon: ie,
             onClick: f
           }, null)]
         })]), e("div", null, [e(o("el-tooltip"), {
@@ -254,7 +255,7 @@ const de = /* @__PURE__ */ y({
           default: () => [e(o("el-dropdown"), {
             trigger: "click",
             onCommand: g
-          }, S(r) ? r : {
+          }, E(r) ? r : {
             default: () => [r]
           })]
         })]), e("div", null, [e(o("el-tooltip"), {
@@ -262,7 +263,7 @@ const de = /* @__PURE__ */ y({
         }, {
           default: () => [e(o("el-button"), {
             circle: !0,
-            size: i(n),
+            size: s(n),
             icon: oe,
             onClick: l
           }, null)]
@@ -270,11 +271,11 @@ const de = /* @__PURE__ */ y({
       }
       function p() {
         const r = () => {
-          T.value = !1;
+          A.value = !1;
         }, g = (u) => e(o("el-checkbox"), {
           key: "normal",
           modelValue: u.show,
-          "onUpdate:modelValue": (s) => u.show = s,
+          "onUpdate:modelValue": (i) => u.show = i,
           label: u.prop
         }, {
           default: () => [u.label]
@@ -285,15 +286,15 @@ const de = /* @__PURE__ */ y({
         }, {
           default: () => [O[u.type]]
         }), l = {
-          default: () => (i(z) || []).map((u) => u.type && O[u.type] ? f(u) : g(u))
+          default: () => (s(T) || []).map((u) => u.type && O[u.type] ? f(u) : g(u))
         };
         return e(o("el-drawer"), {
           width: "320px",
           "append-to-body": !0,
-          "model-value": T.value,
+          "model-value": A.value,
           title: "字段管理",
           onClose: r
-        }, S(l) ? l : {
+        }, E(l) ? l : {
           default: () => [l]
         });
       }

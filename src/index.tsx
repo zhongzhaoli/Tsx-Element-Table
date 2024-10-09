@@ -261,6 +261,7 @@ const TsxElementTable = defineComponent({
                   <el-tooltip content={item.tooltip}>
                     <el-button
                       circle
+                      loading={'loading' in item && item.loading}
                       size={unref(handleSize)}
                       icon={item.icon}
                       onClick={() => handleRightClick(item.key)}

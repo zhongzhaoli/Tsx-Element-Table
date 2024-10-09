@@ -33,6 +33,7 @@ export interface HandleColumnProps {
 export interface HandleRightColumnProps {
   icon: ElButtonProps['icon'];
   tooltip: string;
+  loading?: boolean;
   key: string;
 }
 
