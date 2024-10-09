@@ -256,6 +256,7 @@ const TsxElementTable = defineComponent({
         const renderRightColumns = () => {
           if (props.handle?.rightColumns) {
             return props.handle?.rightColumns.map((item) => {
+              const newIcon = { ...new Object(item.icon) };
               return (
                 <div>
                   <el-tooltip content={item.tooltip}>
@@ -263,7 +264,7 @@ const TsxElementTable = defineComponent({
                       circle
                       loading={'loading' in item && item.loading}
                       size={unref(handleSize)}
-                      icon={item.icon}
+                      icon={newIcon}
                       onClick={() => handleRightClick(item.key)}
                     ></el-button>
                   </el-tooltip>

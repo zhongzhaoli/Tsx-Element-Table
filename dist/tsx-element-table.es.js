@@ -1,14 +1,14 @@
-import { defineComponent as z, openBlock as L, createElementBlock as x, createElementVNode as y, ref as C, watch as G, createVNode as e, resolveComponent as o, unref as s, getCurrentInstance as K, mergeProps as B, computed as Z, isVNode as W, Fragment as k } from "vue";
-const N = "table-", X = "-header", Y = "handle-left", q = !0, O = {
+import { defineComponent as z, openBlock as L, createElementBlock as x, createElementVNode as y, ref as C, watch as K, createVNode as e, resolveComponent as o, unref as s, getCurrentInstance as Z, mergeProps as B, computed as W, isVNode as X, Fragment as k } from "vue";
+const N = "table-", Y = "-header", q = "handle-left", J = !0, O = {
   index: "索引",
   selection: "选择"
-}, J = "default", U = 10, P = 1, Q = 0, ee = !0, te = "total, sizes, prev, pager, next, jumper", ne = [10, 20, 50, 100], ae = [
+}, Q = "default", U = 10, P = 1, ee = 0, te = !0, ne = "total, sizes, prev, pager, next, jumper", ae = [10, 20, 50, 100], le = [
   { value: "large", label: "宽松" },
   { value: "default", label: "默认" },
   { value: "small", label: "紧凑" }
 ];
 /*! Element Plus Icons Vue v2.3.1 */
-var le = /* @__PURE__ */ z({
+var oe = /* @__PURE__ */ z({
   name: "Open",
   __name: "open",
   setup(t) {
@@ -26,7 +26,7 @@ var le = /* @__PURE__ */ z({
       })
     ]));
   }
-}), oe = le, re = /* @__PURE__ */ z({
+}), re = oe, ue = /* @__PURE__ */ z({
   name: "Operation",
   __name: "operation",
   setup(t) {
@@ -40,7 +40,7 @@ var le = /* @__PURE__ */ z({
       })
     ]));
   }
-}), ue = re, ce = /* @__PURE__ */ z({
+}), ce = ue, ie = /* @__PURE__ */ z({
   name: "Refresh",
   __name: "refresh",
   setup(t) {
@@ -54,17 +54,17 @@ var le = /* @__PURE__ */ z({
       })
     ]));
   }
-}), ie = ce;
+}), se = ie;
 function E(t) {
-  return typeof t == "function" || Object.prototype.toString.call(t) === "[object Object]" && !W(t);
+  return typeof t == "function" || Object.prototype.toString.call(t) === "[object Object]" && !X(t);
 }
-const de = /* @__PURE__ */ z({
+const fe = /* @__PURE__ */ z({
   name: "TsxElementTable",
   props: {
     // Normal
     size: {
       type: String,
-      default: J
+      default: Q
     },
     table: {
       type: Object,
@@ -94,8 +94,8 @@ const de = /* @__PURE__ */ z({
     emit: c,
     expose: D
   }) {
-    const m = C(t.size), H = C(null), T = C();
-    G(() => t.table, (a) => {
+    const w = C(t.size), H = C(null), T = C();
+    K(() => t.table, (a) => {
       T.value = a.columns.map((n) => ({
         ...n,
         show: n.show ?? !0
@@ -113,13 +113,13 @@ const de = /* @__PURE__ */ z({
       return b[n];
     }
     function R(a) {
-      const n = `${N}${a.prop}${X}`;
+      const n = `${N}${a.prop}${Y}`;
       return b[n];
     }
     function I() {
-      return b[Y];
+      return b[q];
     }
-    function M(a) {
+    function j(a) {
       const n = {}, d = F(a), _ = R(a);
       return d && (n.default = (p) => d(p)), _ && (n.header = (p) => _(p)), a.show && e(o("el-table-column"), B(a, {
         key: a.prop
@@ -127,9 +127,9 @@ const de = /* @__PURE__ */ z({
         default: () => [n]
       });
     }
-    function j() {
+    function M() {
       var g, f, l, u;
-      const a = C((t == null ? void 0 : t.currentPage) || P), n = C((t == null ? void 0 : t.pageSize) || U), d = ((g = t == null ? void 0 : t.pagination) == null ? void 0 : g.total) || Q, _ = ((f = t.pagination) == null ? void 0 : f.show) ?? ee;
+      const a = C((t == null ? void 0 : t.currentPage) || P), n = C((t == null ? void 0 : t.pageSize) || U), d = ((g = t == null ? void 0 : t.pagination) == null ? void 0 : g.total) || ee, _ = ((f = t.pagination) == null ? void 0 : f.show) ?? te;
       if (!(_ === "auto" ? d > n : _)) return;
       const v = (i) => {
         c("update:currentPage", i), c("page-change", {
@@ -145,14 +145,14 @@ const de = /* @__PURE__ */ z({
       return e("div", {
         className: "tetPaginationBox"
       }, [e(o("el-pagination"), {
-        size: s(m),
+        size: s(w),
         "current-page": a.value,
         "onUpdate:current-page": (i) => a.value = i,
         "page-size": n.value,
         "onUpdate:page-size": (i) => n.value = i,
         total: d,
-        pageSizes: ((l = t.pagination) == null ? void 0 : l.pageSizes) || ne,
-        layout: ((u = t.pagination) == null ? void 0 : u.layout) || te,
+        pageSizes: ((l = t.pagination) == null ? void 0 : l.pageSizes) || ae,
+        layout: ((u = t.pagination) == null ? void 0 : u.layout) || ne,
         onCurrentChange: v,
         onSizeChange: r
       }, null)]);
@@ -162,7 +162,7 @@ const de = /* @__PURE__ */ z({
       let a;
       const {
         table: n
-      } = t, d = K(), _ = {};
+      } = t, d = Z(), _ = {};
       return Object.keys(((v = d == null ? void 0 : d.vnode) == null ? void 0 : v.props) ?? []).filter((r) => r.startsWith("on") && !r.startsWith("onUpdate")).forEach((r) => {
         const f = r.replace("on", "").replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
         _[r] = (...l) => {
@@ -172,15 +172,15 @@ const de = /* @__PURE__ */ z({
         className: "tetTableBox"
       }, [e(o("el-table"), B({
         ref: H,
-        size: s(m)
-      }, _, n), E(a = (s(T) || []).map((r) => M(r))) ? a : {
+        size: s(w)
+      }, _, n), E(a = (s(T) || []).map((r) => j(r))) ? a : {
         default: () => [a]
       })]);
     }
     function $() {
       var v;
-      if (!t.handle || !(((v = t.handle) == null ? void 0 : v.show) ?? q)) return;
-      const n = Z(() => s(m) === "large" ? "default" : s(m));
+      if (!t.handle || !(((v = t.handle) == null ? void 0 : v.show) ?? J)) return;
+      const n = W(() => s(w) === "large" ? "default" : s(w));
       function d() {
         var f;
         const r = (l) => {
@@ -204,21 +204,21 @@ const de = /* @__PURE__ */ z({
           default: () => e(o("el-button"), {
             circle: !0,
             size: s(n),
-            icon: ue
+            icon: ce
           }, null),
           dropdown: () => {
             let h;
-            return e(o("el-dropdown-menu"), null, E(h = ae.map((w) => e(o("el-dropdown-item"), {
-              command: w.value,
-              disabled: s(m) === w.value
+            return e(o("el-dropdown-menu"), null, E(h = le.map((m) => e(o("el-dropdown-item"), {
+              command: m.value,
+              disabled: s(w) === m.value
             }, {
-              default: () => [w.label]
+              default: () => [m.label]
             }))) ? h : {
               default: () => [h]
             });
           }
         }, g = (h) => {
-          m.value = h, c("size-change", h);
+          w.value = h, c("size-change", h);
         }, f = () => {
           c("table-refresh");
         }, l = () => {
@@ -227,26 +227,31 @@ const de = /* @__PURE__ */ z({
           c("handle-right-click", h);
         };
         return e(k, null, [(() => {
-          var h, w;
+          var h, m;
           if ((h = t.handle) != null && h.rightColumns)
-            return (w = t.handle) == null ? void 0 : w.rightColumns.map((S) => e("div", null, [e(o("el-tooltip"), {
-              content: S.tooltip
-            }, {
-              default: () => [e(o("el-button"), {
-                circle: !0,
-                loading: "loading" in S && S.loading,
-                size: s(n),
-                icon: S.icon,
-                onClick: () => u(S.key)
-              }, null)]
-            })]));
+            return (m = t.handle) == null ? void 0 : m.rightColumns.map((S) => {
+              const G = {
+                ...new Object(S.icon)
+              };
+              return e("div", null, [e(o("el-tooltip"), {
+                content: S.tooltip
+              }, {
+                default: () => [e(o("el-button"), {
+                  circle: !0,
+                  loading: "loading" in S && S.loading,
+                  size: s(n),
+                  icon: G,
+                  onClick: () => u(S.key)
+                }, null)]
+              })]);
+            });
         })(), e("div", null, [e(o("el-tooltip"), {
           content: "表格刷新"
         }, {
           default: () => [e(o("el-button"), {
             circle: !0,
             size: s(n),
-            icon: ie,
+            icon: se,
             onClick: f
           }, null)]
         })]), e("div", null, [e(o("el-tooltip"), {
@@ -264,7 +269,7 @@ const de = /* @__PURE__ */ z({
           default: () => [e(o("el-button"), {
             circle: !0,
             size: s(n),
-            icon: oe,
+            icon: re,
             onClick: l
           }, null)]
         })])]);
@@ -308,9 +313,9 @@ const de = /* @__PURE__ */ z({
     }
     return () => e("div", {
       className: "TsxElementTableContainer"
-    }, [$(), V(), j()]);
+    }, [$(), V(), M()]);
   }
 });
 export {
-  de as default
+  fe as default
 };
