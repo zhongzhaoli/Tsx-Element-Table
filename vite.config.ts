@@ -10,10 +10,11 @@ export default defineConfig({
       fileName: (format) => `tsx-element-table.${format}.js`,
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', 'vuedraggable'],
       output: {
         globals: {
           vue: 'Vue',
+          vuedraggable: 'VueDraggable',
         },
       },
     },
