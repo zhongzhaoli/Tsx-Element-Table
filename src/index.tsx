@@ -34,9 +34,11 @@ import {
 import './index.css';
 import { Refresh, Operation, Open } from '@element-plus/icons-vue';
 import { type TableInstance } from 'element-plus/lib/components/table';
+import draggable from 'vuedraggable';
 
 const TsxElementTable = defineComponent({
   name: 'TsxElementTable',
+  components: { draggable },
   props: {
     // Normal
     size: {
@@ -332,6 +334,12 @@ const TsxElementTable = defineComponent({
                 : normalCheckBox(column);
             }),
         };
+        const canDrag = (column: HandleDisplayProps) => {
+          return !column.fixed && !column.type;
+        };
+        const dragMove = (e: any) => {
+          return canDrag(e.relatedContext.element);
+        };
         return (
           <el-drawer
             width="320px"
@@ -340,7 +348,50 @@ const TsxElementTable = defineComponent({
             title="字段管理"
             onClose={close}
           >
-            {drawerSlot}
+            <draggable
+              item-key="prop"
+              filter=".forbid"
+              v-model={columns.value}
+              animation={200}
+              move={dragMove}
+            >
+              {{
+                item: (slotData: { element: HandleDisplayProps }) => {
+                  const { element } = slotData;
+                  return (
+                    <div
+                      class={{
+                        columnDragItem: true,
+                        forbid: !canDrag(element),
+                      }}
+                    >
+                      <div class="iconBox">
+                        {canDrag(element) && (
+                          <svg
+                            t="1728528547556"
+                            class="icon"
+                            viewBox="0 0 1024 1024"
+                            version="1.1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            p-id="4317"
+                            width="512"
+                            height="512"
+                          >
+                            <path
+                              d="M909.3 506.3L781.7 405.6c-4.7-3.7-11.7-0.4-11.7 5.7V476H548V254h64.8c6 0 9.4-7 5.7-11.7L517.7 114.7c-2.9-3.7-8.5-3.7-11.3 0L405.6 242.3c-3.7 4.7-0.4 11.7 5.7 11.7H476v222H254v-64.8c0-6-7-9.4-11.7-5.7L114.7 506.3c-3.7 2.9-3.7 8.5 0 11.3l127.5 100.8c4.7 3.7 11.7 0.4 11.7-5.7V548h222v222h-64.8c-6 0-9.4 7-5.7 11.7l100.8 127.5c2.9 3.7 8.5 3.7 11.3 0l100.8-127.5c3.7-4.7 0.4-11.7-5.7-11.7H548V548h222v64.8c0 6 7 9.4 11.7 5.7l127.5-100.8c3.7-2.9 3.7-8.5 0.1-11.4z"
+                              p-id="4318"
+                            ></path>
+                          </svg>
+                        )}
+                      </div>
+                      {element.type && SPECIAL_COLUMN[element.type]
+                        ? specialCheckBox(element)
+                        : normalCheckBox(element)}
+                    </div>
+                  );
+                },
+              }}
+            </draggable>
           </el-drawer>
         );
       }

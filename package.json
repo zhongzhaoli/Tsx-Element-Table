@@ -26,10 +26,11 @@
   },
   "homepage": "https://github.com/zhongzhaoli/Tsx-Element-Table#readme",
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "element-plus": "^2.7.6",
     "typescript": "^5.5.3",
     "vite": "^5.3.3",
-    "@element-plus/icons-vue": "^2.3.1",
-    "element-plus": "^2.7.6"
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",
