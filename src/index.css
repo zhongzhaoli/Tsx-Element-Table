@@ -41,6 +41,8 @@
 }
 .columnDragItem.forbid {
   cursor: not-allowed;
+  background: #f9f9f9;
+  border: 1px #f1f1f1 solid;
 }
 .columnDragItem > .iconBox > svg {
   width: 100%;
