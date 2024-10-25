@@ -44,6 +44,8 @@ import { type ComponentProps } from 'tsx-element-table';
     size?: ComponentSize;
     // Handle
     handle?: HandleProps;
+    // TableColumns（1.6.0更新）
+    tableColumns: TableColumnProps[];
     // Table
     table: TableProps;
     // Pagination
@@ -135,6 +137,7 @@ import { type ComponentProps } from 'tsx-element-table';
 | :-------------------------------- | :--------- | :----------------------------------- | :-------------------------- |
 | size                              | 组件大小   | string ('large', 'default', 'small') | 'default'                   |
 | handle                            | 操作参数   | HandleProps (见下表)                 | { show: true, columns: [] } |
+| tableColumns                      | 表格列     | TableColumnProps                     | -                           |
 | table                             | 表格参数   | TableProps (见下表)                  | -                           |
 | pagination                        | 分页参数   | PaginationProps (见下表)             | { show: true, total: 0 }    |
 | v-model:pageSize / pageSize       | 每页数据量 | number                               | 10                          |
@@ -167,11 +170,10 @@ import { type ComponentProps } from 'tsx-element-table';
 
 #### TableProps
 
-| 属性名  | 说明           | 类型                                                                                            | 默认值 |
-| :------ | :------------- | :---------------------------------------------------------------------------------------------- | :----- |
-| columns | 表格列数据数组 | [同 Element table column](https://element-plus.org/zh-CN/component/table.html#table-column-api) | -      |
-| data    | 源数据         | TableDataProps[]                                                                                | []     |
-| ...     | 其他           | [同 Element table](https://element-plus.org/zh-CN/component/table.html#table-api)               | -      |
+| 属性名 | 说明   | 类型                                                                              | 默认值 |
+| :----- | :----- | :-------------------------------------------------------------------------------- | :----- |
+| data   | 源数据 | TableDataProps[]                                                                  | []     |
+| ...    | 其他   | [同 Element table](https://element-plus.org/zh-CN/component/table.html#table-api) | -      |
 
 #### PaginationProps
 
@@ -202,9 +204,10 @@ import { type ComponentProps } from 'tsx-element-table';
 
 ### TsxElementTable 暴露
 
-| 方法名      | 说明                 | 返回值                                                                                       | 类型                      |
-| :---------- | :------------------- | :------------------------------------------------------------------------------------------- | :------------------------ |
-| getTableRef | Element Table Expose | [同 Element Table Expose](https://element-plus.org/zh-CN/component/table.html#table-exposes) | TableInstance ( Element ) |
+| 方法名             | 说明                                                                        | 返回值                                                                                       | 类型                      |
+| :----------------- | :-------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------- | :------------------------ |
+| getTableRef        | Element Table Expose                                                        | [同 Element Table Expose](https://element-plus.org/zh-CN/component/table.html#table-exposes) | TableInstance ( Element ) |
+| updateTableColumns | 当 tableColumns 不是响应式数据时，更新 Columns 数据后可以使用此方法手动刷新 | -                                                                                            | -                         |
 
 ### TsxElementTable 类型
 
@@ -228,7 +231,7 @@ import { type ComponentProps } from 'tsx-element-table';
 
 - ~~`Table Column` 颗粒度与 `Element` 对其（属性、方法、暴露）。~~
 - ~~`Pagination` 增加可配置一定条件下显示与隐藏。~~
-- `Handle` 右侧可在一定限度内配置新的按钮。
+- ~~`Handle` 右侧可在一定限度内配置新的按钮。~~
 - 组件拆分解耦。
 
 ## 反馈与提问
