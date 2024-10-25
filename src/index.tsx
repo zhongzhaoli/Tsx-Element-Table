@@ -15,6 +15,7 @@ import {
   type TableProps,
   type HandleDisplayProps,
   PaginationProps,
+  TableColumnProps,
 } from './types';
 import {
   DEFAULT_PAGE,
@@ -45,6 +46,10 @@ const TsxElementTable = defineComponent({
       type: String as PropType<ComponentSize>,
       default: DEFAULT_SIZE,
     },
+    tableColumns: {
+      type: Array as PropType<TableColumnProps[]>,
+      required: true,
+    },
     table: {
       type: Object as PropType<TableProps>,
       required: true,
@@ -71,14 +76,10 @@ const TsxElementTable = defineComponent({
     const tableRef = ref<TableInstance | null>(null);
     const columns = ref<HandleDisplayProps[]>();
     watch(
-      () => props.table,
+      () => props.tableColumns,
       (nV) => {
-        columns.value = nV.columns.map((column) => {
-          return {
-            ...column,
-            show: column.show ?? true,
-          };
-        });
+        if (!nV) return;
+        updateTableColumns(nV);
       },
       { deep: true, immediate: true }
     );
@@ -86,7 +87,17 @@ const TsxElementTable = defineComponent({
     // 公开的方法或属性
     expose({
       getTableRef: () => tableRef.value,
+      updateTableColumns: () => updateTableColumns(props.tableColumns),
     });
+    // 手动更新表格列
+    function updateTableColumns(nV: TableColumnProps[]) {
+      columns.value = nV.map((column) => {
+        return {
+          ...column,
+          show: column.show ?? true,
+        };
+      });
+    }
     // 根据column的prop属性，获取对应的插槽内容
     function getColumnSlot(column: HandleDisplayProps) {
       const slotName = `${DEFAULT_COLUMN_SLOT_PREFIX}${column.prop}`;

@@ -38,9 +38,7 @@ export interface HandleRightColumnProps {
 }
 
 // 三件套
-export interface TableProps extends ElTableProps {
-  columns: TableColumnProps[];
-}
+export interface TableProps extends ElTableProps {}
 export interface HandleProps {
   columns?: HandleColumnProps[];
   rightColumns?: HandleRightColumnProps[];
@@ -58,6 +56,8 @@ export interface ComponentProps {
   size?: ComponentSize;
   // Handle
   handle?: HandleProps;
+  // TableColumns
+  tableColumns: TableColumnProps[];
   // Table
   table: TableProps;
   // Pagination
@@ -68,4 +68,5 @@ export interface ComponentProps {
 
 export interface ComponentInstance {
   getTableRef: () => TableInstance;
+  updateTableColumns: () => void;
 }
