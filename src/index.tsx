@@ -184,6 +184,7 @@ const TsxElementTable = defineComponent({
       return (
         <div className="tetTableBox">
           <el-table
+            v-loading={props.table.loading}
             ref={tableRef}
             size={unref(componentSize)}
             {...events}

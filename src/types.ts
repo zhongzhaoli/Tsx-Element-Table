@@ -38,7 +38,9 @@ export interface HandleRightColumnProps {
 }
 
 // 三件套
-export interface TableProps extends ElTableProps {}
+export interface TableProps extends ElTableProps {
+  loading?: boolean;
+}
 export interface HandleProps {
   columns?: HandleColumnProps[];
   rightColumns?: HandleRightColumnProps[];

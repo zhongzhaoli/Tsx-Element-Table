@@ -170,10 +170,11 @@ import { type ComponentProps } from 'tsx-element-table';
 
 #### TableProps
 
-| 属性名 | 说明   | 类型                                                                              | 默认值 |
-| :----- | :----- | :-------------------------------------------------------------------------------- | :----- |
-| data   | 源数据 | TableDataProps[]                                                                  | []     |
-| ...    | 其他   | [同 Element table](https://element-plus.org/zh-CN/component/table.html#table-api) | -      |
+| 属性名  | 说明       | 类型                                                                              | 默认值 |
+| :------ | :--------- | :-------------------------------------------------------------------------------- | :----- |
+| data    | 源数据     | TableDataProps[]                                                                  | []     |
+| loading | 加载中状态 | boolean                                                                           | false  |
+| ...     | 其他       | [同 Element table](https://element-plus.org/zh-CN/component/table.html#table-api) | -      |
 
 #### PaginationProps
 
