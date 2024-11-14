@@ -1,4 +1,4 @@
-import { defineComponent as L, openBlock as T, createElementBlock as A, createElementVNode as x, ref as C, watch as W, createVNode as e, resolveComponent as u, unref as h, getCurrentInstance as q, withDirectives as X, mergeProps as k, resolveDirective as Y, computed as J, isVNode as Q, Fragment as N } from "vue";
+import { defineComponent as L, openBlock as H, createElementBlock as T, createElementVNode as x, ref as C, watch as W, createVNode as e, resolveComponent as u, unref as h, getCurrentInstance as q, withDirectives as X, mergeProps as k, resolveDirective as Y, computed as J, isVNode as Q, Fragment as N } from "vue";
 import O from "vuedraggable";
 const U = "table-", ee = "-header", te = "handle-left", ne = !0, D = {
   index: "索引",
@@ -13,7 +13,7 @@ var ie = /* @__PURE__ */ L({
   name: "Open",
   __name: "open",
   setup(t) {
-    return (_, i) => (T(), A("svg", {
+    return (_, i) => (H(), T("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       viewBox: "0 0 1024 1024"
     }, [
@@ -31,7 +31,7 @@ var ie = /* @__PURE__ */ L({
   name: "Operation",
   __name: "operation",
   setup(t) {
-    return (_, i) => (T(), A("svg", {
+    return (_, i) => (H(), T("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       viewBox: "0 0 1024 1024"
     }, [
@@ -45,7 +45,7 @@ var ie = /* @__PURE__ */ L({
   name: "Refresh",
   __name: "refresh",
   setup(t) {
-    return (_, i) => (T(), A("svg", {
+    return (_, i) => (H(), T("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       viewBox: "0 0 1024 1024"
     }, [
@@ -102,7 +102,7 @@ const _e = /* @__PURE__ */ L({
     emit: i,
     expose: V
   }) {
-    const m = C(t.size), H = C(null), y = C();
+    const m = C(t.size), A = C(null), y = C();
     W(() => t.tableColumns, (l) => {
       l && B(l);
     }, {
@@ -111,7 +111,7 @@ const _e = /* @__PURE__ */ L({
     });
     const z = C(!1);
     V({
-      getTableRef: () => H.value,
+      getTableRef: () => A.value,
       updateTableColumns: () => B(t.tableColumns)
     });
     function B(l) {
@@ -183,7 +183,7 @@ const _e = /* @__PURE__ */ L({
       }), e("div", {
         className: "tetTableBox"
       }, [X(e(u("el-table"), k({
-        ref: H,
+        ref: A,
         size: h(m)
       }, g, a), E(l = (h(y) || []).map((c) => j(c))) ? l : {
         default: () => [l]
@@ -266,7 +266,9 @@ const _e = /* @__PURE__ */ L({
             icon: fe,
             onClick: d
           }, null)]
-        })]), e("div", null, [e(u("el-tooltip"), {
+        })]), e("div", {
+          class: "xsHidden"
+        }, [e(u("el-tooltip"), {
           content: "表格大小"
         }, {
           default: () => [e(u("el-dropdown"), {
@@ -275,7 +277,9 @@ const _e = /* @__PURE__ */ L({
           }, E(c) ? c : {
             default: () => [c]
           })]
-        })]), e("div", null, [e(u("el-tooltip"), {
+        })]), e("div", {
+          class: "xsHidden"
+        }, [e(u("el-tooltip"), {
           content: "字段管理"
         }, {
           default: () => [e(u("el-button"), {

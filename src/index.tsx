@@ -300,14 +300,14 @@ const TsxElementTable = defineComponent({
                 ></el-button>
               </el-tooltip>
             </div>
-            <div>
+            <div class="xsHidden">
               <el-tooltip content="表格大小">
                 <el-dropdown trigger="click" onCommand={sizeChange}>
                   {dropdownSlot}
                 </el-dropdown>
               </el-tooltip>
             </div>
-            <div>
+            <div class="xsHidden">
               <el-tooltip content="字段管理">
                 <el-button
                   circle
