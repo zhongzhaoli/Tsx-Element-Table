@@ -70,6 +70,7 @@ import { type ComponentProps } from 'tsx-element-table';
     key: string; // 唯一标识，用作点击事件的判断
     label: string; // 按钮文本
     type?: ButtonType; // 按钮类型 Enum，参考Element 按钮类型
+    show?: boolean; // 按钮是否显示，可以用作按钮权限判断
     action?: () => void; // 点击后的回调，也可以使用点击事件处理
   }
   ```
@@ -157,6 +158,7 @@ import { type ComponentProps } from 'tsx-element-table';
 | :------ | :------- | :--------------- | :----- |
 | key     | 唯一标识 | string           | -      |
 | tooltip | 提示词   | string           | -      |
+| show    | 是否展示 | boolean          | -      |
 | icon    | 图标     | ElButton['icon'] | -      |
 
 #### HandleColumnProps
@@ -166,6 +168,7 @@ import { type ComponentProps } from 'tsx-element-table';
 | key    | 唯一标识 | string                                                                                    | -      |
 | label  | 按钮文本 | string                                                                                    | -      |
 | type   | 按钮类型 | [同 Element button type](https://element-plus.org/zh-CN/component/button.html#button-api) | -      |
+| show   | 是否展示 | boolean                                                                                   | -      |
 | action | 回调函数 | () => void                                                                                | -      |
 
 #### TableProps

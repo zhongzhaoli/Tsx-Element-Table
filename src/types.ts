@@ -27,6 +27,7 @@ export interface HandleColumnProps {
   key: string;
   label: string;
   type?: ButtonType;
+  show?: boolean;
   action?: () => void;
 }
 
@@ -34,6 +35,7 @@ export interface HandleRightColumnProps {
   icon: ElButtonProps['icon'];
   tooltip: string;
   loading?: boolean;
+  show?: boolean;
   key: string;
 }
 

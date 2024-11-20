@@ -215,18 +215,20 @@ const TsxElementTable = defineComponent({
         return (
           <>
             <div className="tetHandleLeftBtnBox">
-              {(props.handle?.columns || []).map((item) => {
-                return (
-                  <el-button
-                    size={unref(handleSize)}
-                    key={item.key}
-                    type={item.type || ''}
-                    onClick={item.action ?? (() => handleClick(item.key))}
-                  >
-                    {item.label}
-                  </el-button>
-                );
-              })}
+              {(props.handle?.columns || [])
+                .filter((item) => item.show !== false)
+                .map((item) => {
+                  return (
+                    <el-button
+                      size={unref(handleSize)}
+                      key={item.key}
+                      type={item.type || ''}
+                      onClick={item.action ?? (() => handleClick(item.key))}
+                    >
+                      {item.label}
+                    </el-button>
+                  );
+                })}
             </div>
             <div className="tetHandleLeftSlotBox">{slot && slot()}</div>
           </>
@@ -269,22 +271,24 @@ const TsxElementTable = defineComponent({
         };
         const renderRightColumns = () => {
           if (props.handle?.rightColumns) {
-            return props.handle?.rightColumns.map((item) => {
-              const newIcon = { ...new Object(item.icon) };
-              return (
-                <div>
-                  <el-tooltip content={item.tooltip}>
-                    <el-button
-                      circle
-                      loading={'loading' in item && item.loading}
-                      size={unref(handleSize)}
-                      icon={newIcon}
-                      onClick={() => handleRightClick(item.key)}
-                    ></el-button>
-                  </el-tooltip>
-                </div>
-              );
-            });
+            return props.handle?.rightColumns
+              .filter((item) => item.show !== false)
+              .map((item) => {
+                const newIcon = { ...new Object(item.icon) };
+                return (
+                  <div>
+                    <el-tooltip content={item.tooltip}>
+                      <el-button
+                        circle
+                        loading={'loading' in item && item.loading}
+                        size={unref(handleSize)}
+                        icon={newIcon}
+                        onClick={() => handleRightClick(item.key)}
+                      ></el-button>
+                    </el-tooltip>
+                  </div>
+                );
+              });
           }
         };
         return (
