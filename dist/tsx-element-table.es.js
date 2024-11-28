@@ -187,7 +187,7 @@ const _e = /* @__PURE__ */ L({
         size: h(b)
       }, f, a), E(l = (h(y) || []).map((c) => j(c))) ? l : {
         default: () => [l]
-      }), [[Y("loading"), t.table.loading]])]);
+      }), [[Y("loading"), t.table.loading || !1]])]);
     }
     function K() {
       var p;
