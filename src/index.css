@@ -1,3 +1,6 @@
+.TsxElementTableContainer {
+  height: 100%;
+}
 .TsxElementTableContainer > .tetHandleBox {
   display: flex;
   align-items: center;
