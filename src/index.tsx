@@ -189,6 +189,7 @@ const TsxElementTable = defineComponent({
             size={unref(componentSize)}
             {...events}
             {...table}
+            height="100%"
           >
             {(unref(columns) || []).map((column: HandleDisplayProps) => {
               return renderTableColumn(column);
