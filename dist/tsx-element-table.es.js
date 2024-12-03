@@ -185,7 +185,9 @@ const _e = /* @__PURE__ */ L({
       }, [X(e(u("el-table"), k({
         ref: A,
         size: h(b)
-      }, f, a), E(l = (h(y) || []).map((c) => j(c))) ? l : {
+      }, f, a, {
+        height: "100%"
+      }), E(l = (h(y) || []).map((c) => j(c))) ? l : {
         default: () => [l]
       }), [[Y("loading"), t.table.loading || !1]])]);
     }
