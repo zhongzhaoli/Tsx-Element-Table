@@ -30,7 +30,6 @@
 }
 .TsxElementTableContainer > .tetTableBox th {
   background-color: #f8f8f8 !important;
-  border-bottom: none !important;
   color: #6c6c6c;
 }
 .columnDragItem {
