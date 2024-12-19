@@ -46,6 +46,7 @@
   width: 12px;
   height: 12px;
   margin-right: 14px;
+  position: relative;
 }
 .columnDragItem.forbid {
   cursor: not-allowed;
@@ -56,6 +57,9 @@
   width: 100%;
   height: 100%;
   fill: #999;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 @media screen and (max-width: 768px) {
