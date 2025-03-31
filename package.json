@@ -1,6 +1,6 @@
 {
   "name": "tsx-element-table",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "基于Vue3+Element+Tsx二次开发的ElTable组件",
   "main": "dist/tsx-element-table.umd.js",
   "module": "dist/tsx-element-table.es.js",
@@ -26,14 +26,14 @@
   },
   "homepage": "https://github.com/zhongzhaoli/Tsx-Element-Table#readme",
   "dependencies": {
-    "@element-plus/icons-vue": "^2.3.1",
-    "element-plus": "^2.7.6",
     "typescript": "^5.5.3",
     "vite": "^5.3.3",
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",
-    "@vitejs/plugin-vue-jsx": "^4.0.0"
+    "@vitejs/plugin-vue-jsx": "^4.0.0",
+    "@element-plus/icons-vue": "^2.3.1",
+    "element-plus": "^2.7.6"
   }
 }
