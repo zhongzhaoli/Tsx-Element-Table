@@ -23,10 +23,10 @@
   margin-top: 12px;
   display: flex;
   justify-content: flex-end;
+  height: 32px;
 }
 .TsxElementTableContainer > .tetTableBox {
-  flex: 1;
-  overflow: hidden;
+  height: calc(100% - 32px);
 }
 .TsxElementTableContainer > .tetTableBox th {
   background-color: #f8f8f8 !important;
