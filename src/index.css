@@ -26,7 +26,7 @@
   height: 32px;
 }
 .TsxElementTableContainer > .tetTableBox {
-  height: calc(100% - 32px);
+  height: calc(100% - 32px - 12px);
 }
 .TsxElementTableContainer > .tetTableBox th {
   background-color: #f8f8f8 !important;
