@@ -33,7 +33,7 @@
   color: #6c6c6c;
 }
 .TsxElementTableContainer > .tetTableBox th.label-border-top {
-  border: 1px var(--el-table-border-color) solid;
+  border-top: 1px var(--el-table-border-color) solid;
 }
 .columnDragItem {
   display: flex;
