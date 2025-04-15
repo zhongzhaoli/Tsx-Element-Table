@@ -32,6 +32,9 @@
   background-color: #f8f8f8 !important;
   color: #6c6c6c;
 }
+.TsxElementTableContainer > .tetTableBox th.label-border-top {
+  border: 1px var(--el-table-border-color) solid;
+}
 .columnDragItem {
   display: flex;
   align-items: center;

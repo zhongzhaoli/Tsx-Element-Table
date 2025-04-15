@@ -124,9 +124,19 @@ const TsxElementTable = defineComponent({
         columnSlots.default = (scope: Record<string, any>) => slot(scope);
       if (headerSlot)
         columnSlots.header = (scope: Record<string, any>) => headerSlot(scope);
+      let labelClassName = column.labelClassName
+        ? column.labelClassName.split(' ')
+        : [];
+      if (props.table.border) {
+        labelClassName.push('label-border-top');
+      }
       return (
         column.show && (
-          <el-table-column {...column} key={column.prop}>
+          <el-table-column
+            {...column}
+            key={column.prop}
+            label-class-name={labelClassName.join(' ')}
+          >
             {columnSlots}
           </el-table-column>
         )
