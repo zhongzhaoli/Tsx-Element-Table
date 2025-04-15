@@ -1,4 +1,4 @@
-import { defineComponent as L, openBlock as H, createElementBlock as T, createElementVNode as x, ref as S, watch as W, createVNode as e, resolveComponent as u, unref as h, getCurrentInstance as q, withDirectives as X, mergeProps as k, resolveDirective as Y, computed as J, isVNode as Q, Fragment as N } from "vue";
+import { defineComponent as L, openBlock as H, createElementBlock as T, createElementVNode as x, ref as S, watch as W, createVNode as e, resolveComponent as u, unref as f, getCurrentInstance as q, withDirectives as X, mergeProps as N, resolveDirective as Y, computed as J, isVNode as Q, Fragment as k } from "vue";
 import O from "vuedraggable";
 const U = "table-", ee = "-header", te = "handle-left", ne = !0, D = {
   index: "索引",
@@ -13,7 +13,7 @@ var ie = /* @__PURE__ */ L({
   name: "Open",
   __name: "open",
   setup(t) {
-    return (m, i) => (H(), T("svg", {
+    return (_, i) => (H(), T("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       viewBox: "0 0 1024 1024"
     }, [
@@ -31,7 +31,7 @@ var ie = /* @__PURE__ */ L({
   name: "Operation",
   __name: "operation",
   setup(t) {
-    return (m, i) => (H(), T("svg", {
+    return (_, i) => (H(), T("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       viewBox: "0 0 1024 1024"
     }, [
@@ -45,7 +45,7 @@ var ie = /* @__PURE__ */ L({
   name: "Refresh",
   __name: "refresh",
   setup(t) {
-    return (m, i) => (H(), T("svg", {
+    return (_, i) => (H(), T("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       viewBox: "0 0 1024 1024"
     }, [
@@ -98,13 +98,13 @@ const _e = /* @__PURE__ */ L({
     }
   },
   setup(t, {
-    slots: m,
+    slots: _,
     emit: i,
     expose: V
   }) {
-    const b = S(t.size), A = S(null), y = S();
-    W(() => t.tableColumns, (l) => {
-      l && B(l);
+    const m = S(t.size), A = S(null), y = S();
+    W(() => t.tableColumns, (a) => {
+      a && B(a);
     }, {
       deep: !0,
       immediate: !0
@@ -114,96 +114,99 @@ const _e = /* @__PURE__ */ L({
       getTableRef: () => A.value,
       updateTableColumns: () => B(t.tableColumns)
     });
-    function B(l) {
-      y.value = l.map((a) => ({
-        ...a,
-        show: a.show ?? !0
+    function B(a) {
+      y.value = a.map((l) => ({
+        ...l,
+        show: l.show ?? !0
       }));
     }
-    function I(l) {
-      const a = `${U}${l.prop}`;
-      return m[a];
+    function I(a) {
+      const l = `${U}${a.prop}`;
+      return _[l];
     }
-    function M(l) {
-      const a = `${U}${l.prop}${ee}`;
-      return m[a];
+    function M(a) {
+      const l = `${U}${a.prop}${ee}`;
+      return _[l];
     }
     function R() {
-      return m[te];
+      return _[te];
     }
-    function j(l) {
-      const a = {}, s = I(l), f = M(l);
-      return s && (a.default = (v) => s(v)), f && (a.header = (v) => f(v)), l.show && e(u("el-table-column"), k(l, {
-        key: l.prop
-      }), E(a) ? a : {
-        default: () => [a]
+    function j(a) {
+      const l = {}, s = I(a), g = M(a);
+      s && (l.default = (d) => s(d)), g && (l.header = (d) => g(d));
+      let b = a.labelClassName ? a.labelClassName.split(" ") : [];
+      return t.table.border && b.push("label-border-top"), a.show && e(u("el-table-column"), N(a, {
+        key: a.prop,
+        "label-class-name": b.join(" ")
+      }), E(l) ? l : {
+        default: () => [l]
       });
     }
     function $() {
-      var g, d, o, w;
-      const l = S((t == null ? void 0 : t.currentPage) || F), a = S((t == null ? void 0 : t.pageSize) || P), s = ((g = t == null ? void 0 : t.pagination) == null ? void 0 : g.total) || le, f = ((d = t.pagination) == null ? void 0 : d.show) ?? oe;
-      if (!(f === "auto" ? s > a : f)) return;
-      const p = (n) => {
+      var v, h, o, w;
+      const a = S((t == null ? void 0 : t.currentPage) || F), l = S((t == null ? void 0 : t.pageSize) || P), s = ((v = t == null ? void 0 : t.pagination) == null ? void 0 : v.total) || le, g = ((h = t.pagination) == null ? void 0 : h.show) ?? oe;
+      if (!(g === "auto" ? s > l : g)) return;
+      const d = (n) => {
         i("update:currentPage", n), i("page-change", {
           currentPage: n,
-          pageSize: a
+          pageSize: l
         });
       }, c = (n) => {
         i("update:pageSize", n), i("page-change", {
-          currentPage: l.value,
+          currentPage: a.value,
           pageSize: n
         });
       };
       return e("div", {
         className: "tetPaginationBox"
       }, [e(u("el-pagination"), {
-        size: h(b),
-        "current-page": l.value,
-        "onUpdate:current-page": (n) => l.value = n,
-        "page-size": a.value,
-        "onUpdate:page-size": (n) => a.value = n,
+        size: f(m),
+        "current-page": a.value,
+        "onUpdate:current-page": (n) => a.value = n,
+        "page-size": l.value,
+        "onUpdate:page-size": (n) => l.value = n,
         total: s,
         pageSizes: ((o = t.pagination) == null ? void 0 : o.pageSizes) || ue,
         layout: ((w = t.pagination) == null ? void 0 : w.layout) || re,
-        onCurrentChange: p,
+        onCurrentChange: d,
         onSizeChange: c
       }, null)]);
     }
     function G() {
-      var p;
-      let l;
+      var d;
+      let a;
       const {
-        table: a
-      } = t, s = q(), f = {};
-      return Object.keys(((p = s == null ? void 0 : s.vnode) == null ? void 0 : p.props) ?? []).filter((c) => c.startsWith("on") && !c.startsWith("onUpdate")).forEach((c) => {
-        const d = c.replace("on", "").replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
-        f[c] = (...o) => {
-          i(d, ...o);
+        table: l
+      } = t, s = q(), g = {};
+      return Object.keys(((d = s == null ? void 0 : s.vnode) == null ? void 0 : d.props) ?? []).filter((c) => c.startsWith("on") && !c.startsWith("onUpdate")).forEach((c) => {
+        const h = c.replace("on", "").replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+        g[c] = (...o) => {
+          i(h, ...o);
         };
       }), e("div", {
         className: "tetTableBox"
-      }, [X(e(u("el-table"), k({
+      }, [X(e(u("el-table"), N({
         ref: A,
-        size: h(b)
-      }, f, a, {
+        size: f(m)
+      }, g, l, {
         height: "100%"
-      }), E(l = (h(y) || []).map((c) => j(c))) ? l : {
-        default: () => [l]
+      }), E(a = (f(y) || []).map((c) => j(c))) ? a : {
+        default: () => [a]
       }), [[Y("loading"), t.table.loading || !1]])]);
     }
     function K() {
-      var p;
-      if (!t.handle || !(((p = t.handle) == null ? void 0 : p.show) ?? ne)) return;
-      const a = J(() => h(b) === "large" ? "default" : h(b));
+      var d;
+      if (!t.handle || !(((d = t.handle) == null ? void 0 : d.show) ?? ne)) return;
+      const l = J(() => f(m) === "large" ? "default" : f(m));
       function s() {
-        var d;
+        var h;
         const c = (o) => {
           i("handle-click", o);
-        }, g = R();
-        return e(N, null, [e("div", {
+        }, v = R();
+        return e(k, null, [e("div", {
           className: "tetHandleLeftBtnBox"
-        }, [(((d = t.handle) == null ? void 0 : d.columns) || []).filter((o) => o.show !== !1).map((o) => e(u("el-button"), {
-          size: h(a),
+        }, [(((h = t.handle) == null ? void 0 : h.columns) || []).filter((o) => o.show !== !1).map((o) => e(u("el-button"), {
+          size: f(l),
           key: o.key,
           type: o.type || "",
           onClick: o.action ?? (() => c(o.key))
@@ -211,51 +214,51 @@ const _e = /* @__PURE__ */ L({
           default: () => [o.label]
         }))]), e("div", {
           className: "tetHandleLeftSlotBox"
-        }, [g && g()])]);
+        }, [v && v()])]);
       }
-      function f() {
+      function g() {
         const c = {
           default: () => e(u("el-button"), {
             circle: !0,
-            size: h(a),
+            size: f(l),
             icon: he
           }, null),
           dropdown: () => {
             let r;
             return e(u("el-dropdown-menu"), null, E(r = ce.map((C) => e(u("el-dropdown-item"), {
               command: C.value,
-              disabled: h(b) === C.value
+              disabled: f(m) === C.value
             }, {
               default: () => [C.label]
             }))) ? r : {
               default: () => [r]
             });
           }
-        }, g = (r) => {
-          b.value = r, i("size-change", r);
-        }, d = () => {
+        }, v = (r) => {
+          m.value = r, i("size-change", r);
+        }, h = () => {
           i("table-refresh");
         }, o = () => {
           z.value = !0;
         }, w = (r) => {
           i("handle-right-click", r);
         };
-        return e(N, null, [(() => {
+        return e(k, null, [(() => {
           var r, C;
           if ((r = t.handle) != null && r.rightColumns)
-            return (C = t.handle) == null ? void 0 : C.rightColumns.filter((_) => _.show !== !1).map((_) => {
+            return (C = t.handle) == null ? void 0 : C.rightColumns.filter((p) => p.show !== !1).map((p) => {
               const Z = {
-                ...new Object(_.icon)
+                ...new Object(p.icon)
               };
               return e("div", null, [e(u("el-tooltip"), {
-                content: _.tooltip
+                content: p.tooltip
               }, {
                 default: () => [e(u("el-button"), {
                   circle: !0,
-                  loading: "loading" in _ && _.loading,
-                  size: h(a),
+                  loading: "loading" in p && p.loading,
+                  size: f(l),
                   icon: Z,
-                  onClick: () => w(_.key)
+                  onClick: () => w(p.key)
                 }, null)]
               })]);
             });
@@ -264,9 +267,9 @@ const _e = /* @__PURE__ */ L({
         }, {
           default: () => [e(u("el-button"), {
             circle: !0,
-            size: h(a),
+            size: f(l),
             icon: ge,
-            onClick: d
+            onClick: h
           }, null)]
         })]), e("div", {
           class: "xsHidden"
@@ -275,7 +278,7 @@ const _e = /* @__PURE__ */ L({
         }, {
           default: () => [e(u("el-dropdown"), {
             trigger: "click",
-            onCommand: g
+            onCommand: v
           }, E(c) ? c : {
             default: () => [c]
           })]
@@ -286,23 +289,23 @@ const _e = /* @__PURE__ */ L({
         }, {
           default: () => [e(u("el-button"), {
             circle: !0,
-            size: h(a),
+            size: f(l),
             icon: se,
             onClick: o
           }, null)]
         })])]);
       }
-      function v() {
+      function b() {
         const c = () => {
           z.value = !1;
-        }, g = (n) => e(u("el-checkbox"), {
+        }, v = (n) => e(u("el-checkbox"), {
           key: "normal",
           modelValue: n.show,
           "onUpdate:modelValue": (r) => n.show = r,
           label: n.prop
         }, {
           default: () => [n.label]
-        }), d = (n) => e(u("el-checkbox"), {
+        }), h = (n) => e(u("el-checkbox"), {
           key: n.type,
           disabled: !0,
           "model-value": !0
@@ -347,7 +350,7 @@ const _e = /* @__PURE__ */ L({
               }, [e("path", {
                 d: "M909.3 506.3L781.7 405.6c-4.7-3.7-11.7-0.4-11.7 5.7V476H548V254h64.8c6 0 9.4-7 5.7-11.7L517.7 114.7c-2.9-3.7-8.5-3.7-11.3 0L405.6 242.3c-3.7 4.7-0.4 11.7 5.7 11.7H476v222H254v-64.8c0-6-7-9.4-11.7-5.7L114.7 506.3c-3.7 2.9-3.7 8.5 0 11.3l127.5 100.8c4.7 3.7 11.7 0.4 11.7-5.7V548h222v222h-64.8c-6 0-9.4 7-5.7 11.7l100.8 127.5c2.9 3.7 8.5 3.7 11.3 0l100.8-127.5c3.7-4.7 0.4-11.7-5.7-11.7H548V548h222v64.8c0 6 7 9.4 11.7 5.7l127.5-100.8c3.7-2.9 3.7-8.5 0.1-11.4z",
                 "p-id": "4318"
-              }, null)])]), r.type && D[r.type] ? d(r) : g(r)]);
+              }, null)])]), r.type && D[r.type] ? h(r) : v(r)]);
             }
           })]
         });
@@ -358,7 +361,7 @@ const _e = /* @__PURE__ */ L({
         className: "tetHandleLeftBox"
       }, [s()]), e("div", {
         className: "tetHandleRightBox"
-      }, [f()]), v()]);
+      }, [g()]), b()]);
     }
     return () => e("div", {
       className: "TsxElementTableContainer"
