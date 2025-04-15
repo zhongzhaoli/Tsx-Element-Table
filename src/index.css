@@ -35,6 +35,9 @@
 .TsxElementTableContainer > .tetTableBox th.label-border-top {
   border-top: 1px var(--el-table-border-color) solid;
 }
+.TsxElementTableContainer > .tetTableBox .el-table__border-left-patch::after {
+  content: unset;
+}
 .columnDragItem {
   display: flex;
   align-items: center;
