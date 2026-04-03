@@ -1,9 +1,6 @@
-import {
-  type ElTableColumn,
-  ElTable,
-  TableInstance,
-} from 'element-plus/lib/components/table';
+import { type ElTableColumn, ElTable } from 'element-plus/lib/components/table';
 import { type ElButton } from 'element-plus/lib/components/button';
+import type { TableInstance } from 'element-plus/lib/components/table';
 
 type ElTableProps = InstanceType<typeof ElTable>['$props'];
 type ElTableColumnProps = InstanceType<typeof ElTableColumn>['$props'];
